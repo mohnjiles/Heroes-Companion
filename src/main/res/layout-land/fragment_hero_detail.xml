@@ -1,0 +1,482 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mrScrolls"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="#323252">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="404dp">
+
+        <TextView
+            android:id="@+id/tv_hero_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="ZERATUL, DARK PRELATE"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_hero_title"
+            android:background="@android:color/white"
+            android:id="@+id/view" />
+
+        <TextView
+            android:id="@+id/tv_stats_title_1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="BASIC INFO"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_below="@+id/ivFranchise"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_stats_title_1"
+            android:background="@android:color/white"
+            android:id="@+id/view2" />
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="*"
+            android:stretchColumns="*"
+            android:layout_below="@+id/view2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TableRow
+                android:id="@+id/rowRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="#0FFFFFFF"
+                android:gravity="left"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:id="@+id/tv_title_role"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:text="Role" />
+
+                <TextView
+                    android:id="@+id/tv_role"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="0.67" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/rowFranchise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="left" >
+
+                <TextView
+                    android:id="@+id/tv_title_franchise"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:text="Franchise"
+                    android:layout_marginLeft="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_franchise"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="625" />
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/rowType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="#0FFFFFFF"
+                android:gravity="left"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:id="@+id/tv_title_type"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:text="Type"
+                    android:layout_marginLeft="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="625" />
+
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/tvStatsTitle2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:layout_alignLeft="@+id/tableLayout"
+            android:layout_below="@+id/tableLayout"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:text="STATS"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tvStatsTitle2"
+            android:background="@android:color/white"
+            android:id="@+id/view3" />
+
+        <TableLayout
+            android:id="@+id/tableLayout2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="*"
+            android:stretchColumns="*"
+            android:layout_below="@+id/view3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TableRow
+                android:id="@+id/rowTitles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center" >
+
+
+                <TextView
+                    android:id="@+id/tv_title_blank"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="8dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_title_lvl_1"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="Level 1" />
+
+
+                <TextView
+                    android:id="@+id/tv_title_per_lvl"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="Per Level" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/rowHealth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="left" >
+
+                <TextView
+                    android:id="@+id/tv_title_hp"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:text="Health"
+                    android:layout_marginLeft="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_hp"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="5" />
+                <TextView
+                    android:id="@+id/tv_hp_per_level"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="+135" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/rowHpRegen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="#0FFFFFFF"
+                android:gravity="left"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:id="@+id/tv_title_hp_regen"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Health Regen"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_hp_regen"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="0.67"
+                    android:textColor="#FFFFFF" />
+                <TextView
+                    android:id="@+id/tv_hp_regen_per_level"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="+1.707"
+                    android:textColor="#FFFFFF" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/rowEnergy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="left" >
+
+                <TextView
+                    android:id="@+id/tv_title_energy"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:text="Energy"
+                    android:layout_marginLeft="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_energy"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="0.67" />
+                <TextView
+                    android:id="@+id/tv_energy_per_level"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="+10" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/rowEnergyRegen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="#0FFFFFFF"
+                android:gravity="left"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:id="@+id/tv_title_energy_regen"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:text="Energy Regen"
+                    android:layout_marginLeft="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_energy_regen"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="0.67" />
+
+                <TextView
+                    android:id="@+id/tv_energy_regen_per_level"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="+0.0976" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/rowAttackDamage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="left" >
+
+                <TextView
+                    android:id="@+id/tv_title_attack_damage"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:text="Attack Damage"
+                    android:layout_marginLeft="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_attack_damage"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="0.67" />
+                <TextView
+                    android:id="@+id/tv_attack_damage_per_level"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="+13" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:id="@+id/rowAttackSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:layout_marginBottom="16dp"
+                android:background="#0FFFFFFF"
+                android:gravity="left" >
+
+                <TextView
+                    android:id="@+id/tv_title_attack_speed"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:text="Attack Speed"
+                    android:layout_marginLeft="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_attack_speed"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="0.67"
+                    android:layout_span="2" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:id="@+id/iv_hero_image"
+            android:layout_below="@+id/view"
+            app:riv_corner_radius="100dip"
+            app:riv_border_width="4dip"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/zeratul"
+            android:layout_toRightOf="@+id/ivRole"
+            android:layout_toEndOf="@+id/ivRole"
+            android:layout_marginLeft="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_lore"
+            android:layout_alignTop="@+id/iv_hero_image"
+            android:layout_toRightOf="@+id/iv_hero_image"
+            android:layout_toEndOf="@+id/iv_hero_image"
+            android:layout_marginLeft="16dp"
+            android:text="The enigmatic Dark Templar Zeratul faithfully serves the Xel'Naga. While he expertly wields the powers of the Void, it is his wisdom that earns him the respect of the Koprulu sector's greatest leaders - despite his penchant for dramatic entrances. "
+            android:textColor="#FFFFFF"
+            android:fontFamily="sans-serif-light"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textIsSelectable="false"
+            android:layout_marginTop="-6dp"
+            android:lineSpacingExtra="3dp"/>
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/ivRole"
+            android:src="@drawable/warrior"
+            android:layout_alignTop="@+id/iv_hero_image"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/ivFranchise"
+            android:src="@drawable/diablogame"
+            android:layout_alignBottom="@+id/iv_hero_image"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
+</ScrollView>

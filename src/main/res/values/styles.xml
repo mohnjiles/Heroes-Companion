@@ -1,0 +1,19 @@
+<resources>
+
+    <color name="dat_purple">#FF323252</color>
+    <color name="blue_500">#FF2196F3</color>
+    <color name="blue_900">#FF0D47A1</color>
+    <color name="purple_900">#FF311B92</color>
+    <color name="purple_700">#FF512DA8</color>
+    <color name="gray_900">#FF212121</color>
+    <color name="gray_800">#FF424242</color>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/dat_purple</item>
+        <item name="colorPrimary">@color/purple_900</item>
+    </style>
+
+
+
+</resources>
