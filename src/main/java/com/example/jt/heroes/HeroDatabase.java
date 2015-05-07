@@ -69,7 +69,7 @@ public class HeroDatabase extends SQLiteAssetHelper {
 
     }
 
-    private void addTalent(Talent talent, SQLiteDatabase db) {
+    public void addTalent(Talent talent, SQLiteDatabase db) {
         ContentValues values = new ContentValues();
 
         values.put("hero_id", talent.getHeroId());
@@ -133,6 +133,7 @@ public class HeroDatabase extends SQLiteAssetHelper {
                         spell.setCost(Integer.valueOf(spellCursor.getString(3)));
                         spell.setCooldown(Integer.valueOf(spellCursor.getString(4)));
                         spell.setDescription(spellCursor.getString(5));
+                        spell.setLetter(spellCursor.getString(6));
 
                         spellList.add(spell);
                     } while (spellCursor.moveToNext());

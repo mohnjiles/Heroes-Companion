@@ -103,8 +103,8 @@ public class SpellsFragment extends Fragment {
             rlSpells.addView(spellLayout, lp);
             holder.tvSpellName.setText(spell.getName().toUpperCase(Locale.getDefault()));
             holder.tvSpellText.setText(spell.getDescription());
-            holder.tvLetter.setText(spell.getLetter().toUpperCase(Locale.getDefault()));
-            holder.ivSpellImage.setImageResource(Utils.getResourceIdByName(getActivity(), spell.getName().toLowerCase().replace(" ", "")));
+            holder.tvLetter.setText("[ " + spell.getLetter().toUpperCase(Locale.getDefault()) + " ]");
+            holder.ivSpellImage.setImageResource(Utils.getResourceIdByName(getActivity(), Utils.formatSpellImageName(spell.getName())));
             counter++;
         }
 

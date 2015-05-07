@@ -46,7 +46,8 @@
         android:layout_alignTop="@+id/tvSpellText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -59,6 +60,5 @@
         android:gravity="center"
         android:layout_alignTop="@+id/tvSpellName"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="16dp" />
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

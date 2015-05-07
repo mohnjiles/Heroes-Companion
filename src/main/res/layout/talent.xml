@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/ivTalentIcon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/archon"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GATHERING POWER"
+        android:id="@+id/tvTalentName"
+        android:layout_alignTop="@+id/ivTalentIcon"
+        android:layout_toRightOf="@+id/ivTalentIcon"
+        android:layout_toEndOf="@+id/ivTalentIcon"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="sans-serif-light"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passively grants 5% Ability Power. Each Hero takedown increases this bonus by 2% to a maximum of 15%. This bonus Ability Power is reset to 5% on death."
+        android:id="@+id/tvTalentDescription"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:layout_below="@+id/tvTalentName"
+        android:layout_alignLeft="@+id/tvTalentName"
+        android:fontFamily="sans-serif-light"
+        android:layout_alignStart="@+id/tvTalentName"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp" />
+</RelativeLayout>

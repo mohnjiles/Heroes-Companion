@@ -8,6 +8,8 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.RelativeLayout;
 
+import java.util.Locale;
+
 
 /**
  * Created by JT on 3/13/2015.
@@ -77,6 +79,10 @@ public class Utils {
         // 1dp/ms
         a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));
         v.startAnimation(a);
+    }
+
+    public static String formatSpellImageName(String spellName) {
+        return spellName.toLowerCase(Locale.getDefault()).replaceAll("[^a-z]", "");
     }
 
 }

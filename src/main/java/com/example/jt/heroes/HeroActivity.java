@@ -23,6 +23,8 @@ import android.widget.RelativeLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.jt.heroes.models.Hero;
+import com.example.jt.heroes.models.ScrapingFragment;
+import com.example.jt.heroes.models.Talent;
 
 import java.util.Locale;
 
@@ -170,6 +172,8 @@ public class HeroActivity extends AppCompatActivity {
                     return HeroDetailFragment.newInstance(hero);
                 case 1:
                     return SpellsFragment.newInstance(hero);
+                case 2:
+                    return TalentFragment.newInstance(hero);
             }
 
             return HeroDetailFragment.newInstance(hero);
