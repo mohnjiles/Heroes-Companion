@@ -1,17 +1,33 @@
 <resources>
 
-    <color name="dat_purple">#FF323252</color>
-    <color name="blue_500">#FF2196F3</color>
-    <color name="blue_900">#FF0D47A1</color>
-    <color name="purple_900">#FF311B92</color>
-    <color name="purple_700">#FF512DA8</color>
+    <color name="light_primary">#FFD1C4E9</color>
+    <color name="primary">#FF673AB7</color>
+    <color name="dark_primary">#FF512DA8</color>
+    <color name="accent">#FFE040FB</color>
+    <color name="secondary_text">#FF727272</color>
+    <color name="divider_color">#FFB6B6B6</color>
     <color name="gray_900">#FF212121</color>
-    <color name="gray_800">#FF424242</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="deep_purple_300">#9575CD</color>
+    <color name="red_500">#F44336</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="purple_500">#9C27B0</color>
+    <color name="teal_500">#009688</color>
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:windowBackground">@color/dat_purple</item>
-        <item name="colorPrimary">@color/purple_900</item>
+        <item name="android:windowBackground">@color/gray_900</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimaryDark">@color/dark_primary</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_marginTop">-2dp</item>
     </style>
 
 

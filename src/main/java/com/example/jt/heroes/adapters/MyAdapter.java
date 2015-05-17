@@ -1,22 +1,25 @@
-package com.example.jt.heroes;
+package com.example.jt.heroes.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.jt.heroes.R;
 import com.example.jt.heroes.models.Hero;
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -24,9 +27,10 @@ import butterknife.InjectView;
 /**
  * Created by JT on 2/25/2015.
  */
-public class MyAdapter extends ObservableRecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyAdapter extends ObservableRecyclerView.Adapter<MyAdapter.ViewHolder> implements Filterable {
 
     private ArrayList<Hero> heroList;
+    private ArrayList<Hero> originalList;
     private int lastPosition = -1;
     private Context context;
 
@@ -47,6 +51,9 @@ public class MyAdapter extends ObservableRecyclerView.Adapter<MyAdapter.ViewHold
 
         @InjectView(R.id.tvDescription)
         public TextView tvDescription;
+
+        @InjectView(R.id.tvRole)
+        TextView tvRole;
 
         @InjectView(R.id.tvTitle)
         public TextView tvTitle;
@@ -87,8 +94,27 @@ public class MyAdapter extends ObservableRecyclerView.Adapter<MyAdapter.ViewHold
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mTextView.setText(heroList.get(position).getName());
+        holder.mTextView.setTag(heroList.get(position).getId());
         holder.tvDescription.setText(heroList.get(position).getDescription());
         holder.tvTitle.setText(heroList.get(position).getTitle());
+
+        switch (heroList.get(position).getRole()) {
+            case "Warrior":
+                holder.tvRole.setTextColor(context.getResources().getColor(R.color.blue_500));
+                break;
+            case "Support":
+                holder.tvRole.setTextColor(context.getResources().getColor(R.color.teal_500));
+                break;
+            case "Specialist":
+                holder.tvRole.setTextColor(context.getResources().getColor(R.color.purple_500));
+                break;
+            case "Assassin":
+                holder.tvRole.setTextColor(context.getResources().getColor(R.color.red_500));
+                break;
+
+        }
+
+        holder.tvRole.setText(heroList.get(position).getRole());
 
         // set icons
         holder.ivHeroIcon.setImageResource(heroList.get(position).getIconResourceId());
@@ -109,20 +135,56 @@ public class MyAdapter extends ObservableRecyclerView.Adapter<MyAdapter.ViewHold
         }
         switch (heroList.get(position).getFranchise()) {
             case "Warcraft":
-                holder.ivFranchiseIcon.setImageResource(R.drawable.warcraft);
+                holder.ivFranchiseIcon.setImageResource(R.drawable.warcraftgame);
                 break;
             case "Diablo":
                 holder.ivFranchiseIcon.setImageResource(R.drawable.diablogame);
                 break;
             case "Starcraft":
-                holder.ivFranchiseIcon.setImageResource(R.drawable.starcraft);
+                holder.ivFranchiseIcon.setImageResource(R.drawable.starcraftgame);
+                break;
+            case "Blizzard":
+                holder.ivFranchiseIcon.setImageResource(R.drawable.blizzardgame);
                 break;
 
 
         }
-        setAnimation(holder.recyclerViewContainer, position);
+        //setAnimation(holder.recyclerViewContainer, position);
     }
 
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                final FilterResults oReturn = new FilterResults();
+                final List<Hero> results = new ArrayList<>();
+
+                if (originalList == null)
+                    originalList = new ArrayList<>(heroList);
+
+                if (charSequence != null) {
+                    if (originalList != null & originalList.size() > 0) {
+                        for (final Hero hero : originalList) {
+                            if (hero.getName().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                                results.add(hero);
+                            }
+                        }
+                    }
+
+                    oReturn.values = results;
+                }
+
+                return oReturn;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                heroList = (ArrayList<Hero>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
 
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -136,7 +198,7 @@ public class MyAdapter extends ObservableRecyclerView.Adapter<MyAdapter.ViewHold
         // If the bound view wasn't previously displayed on screen, it's animated
         if (position > lastPosition)
         {
-            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
         }

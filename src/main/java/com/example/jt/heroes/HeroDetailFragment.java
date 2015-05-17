@@ -1,31 +1,17 @@
 package com.example.jt.heroes;
 
 
-import android.animation.Animator;
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.example.jt.heroes.models.Hero;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
-import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
-import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import butterknife.ButterKnife;
@@ -81,7 +67,6 @@ public class HeroDetailFragment extends Fragment  {
     @InjectView(R.id.mrScrolls)
     ObservableScrollView mrScrolls;
 
-    // TODO: Rename and change types of parameters
     private Hero hero;
 
 
@@ -133,7 +118,7 @@ public class HeroDetailFragment extends Fragment  {
         ivHeroImage.setImageResource(Utils.getResourceIdByName(getActivity(), hero.getName()));
 
         ivRole.setImageResource(Utils.getResourceIdByName(getActivity(), hero.getRole()));
-        ivFranchise.setImageResource(Utils.getResourceIdByName(getActivity(), hero.getFranchise()));
+        ivFranchise.setImageResource(Utils.getResourceIdByName(getActivity(), hero.getFranchise() + "game"));
 
         tvHeroTitle.setText(heroTitle.toUpperCase());
         tvRole.setText(hero.getRole());

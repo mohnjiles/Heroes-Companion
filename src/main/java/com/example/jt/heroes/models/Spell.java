@@ -10,8 +10,8 @@ public class Spell implements Serializable {
     public int heroId;
     public String name;
     public String description;
-    public int cooldown;
-    public int cost;
+    public double cooldown;
+    public double cost;
     public String letter;
     private static final int serialVersionUID = 7331;
 
@@ -27,11 +27,11 @@ public class Spell implements Serializable {
         this.heroId = heroId;
     }
 
-    public int getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
@@ -55,11 +55,11 @@ public class Spell implements Serializable {
         this.description = description;
     }
 
-    public int getCooldown() {
+    public double getCooldown() {
         return cooldown;
     }
 
-    public void setCooldown(int cooldown) {
+    public void setCooldown(double cooldown) {
         this.cooldown = cooldown;
     }
 

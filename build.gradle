@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.jt.heroes"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -29,6 +29,9 @@ dependencies {
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     compile 'com.yqritc:recyclerview-flexibledivider:1.1.0'
     compile 'com.github.ksoichiro:android-observablescrollview:1.5.1'
+    compile 'com.github.traex.rippleeffect:library:1.2.4'
+    compile 'com.github.leonardoxh:fake-search-view:0.3.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 
 }

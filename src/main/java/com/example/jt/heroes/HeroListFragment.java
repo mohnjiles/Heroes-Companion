@@ -1,30 +1,42 @@
 package com.example.jt.heroes;
 
 
-import android.app.ActivityOptions;
-import android.support.v7.app.ActionBar;
+import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Filterable;
+import android.widget.RelativeLayout;
+import android.widget.SearchView;
+import android.widget.TextView;
 
+import com.example.jt.heroes.adapters.MyAdapter;
 import com.example.jt.heroes.models.Hero;
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+import com.yqritc.recyclerviewflexibledivider.VerticalDividerItemDecoration;
 
 import java.util.ArrayList;
 
@@ -38,9 +50,11 @@ public class HeroListFragment extends Fragment implements ObservableScrollViewCa
 
     @InjectView(R.id.my_recycler_view)
     ObservableRecyclerView myRecyclerView;
+    @InjectView(R.id.rlHeroList)
+    RelativeLayout rlHeroList;
 
-    private ObservableRecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private Toolbar toolbar;
+    private InputMethodManager inputManager;
 
     /**
      * The fragment argument representing the section number for this
@@ -67,6 +81,7 @@ public class HeroListFragment extends Fragment implements ObservableScrollViewCa
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        setHasOptionsMenu(true);
         ButterKnife.inject(this, rootView);
         return rootView;
     }
@@ -75,14 +90,32 @@ public class HeroListFragment extends Fragment implements ObservableScrollViewCa
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        toolbar = ((MainActivity) getActivity()).getToolbar();
+        toolbar.setTitle("Heroes of the Storm");
+        toolbar.setSubtitle("Heroes");
+
         myRecyclerView.setHasFixedSize(true);
         myRecyclerView.addItemDecoration(
                 new HorizontalDividerItemDecoration.Builder(getActivity())
-                        .color(Color.argb(115, 255, 255, 255))
+                        .color(getResources().getColor(R.color.divider_color))
                         .size(1)
                         .build());
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        myRecyclerView.addItemDecoration(
+                new VerticalDividerItemDecoration.Builder(getActivity())
+                        .color(getResources().getColor(R.color.divider_color))
+                        .size(1)
+                        .build());
+
+        RecyclerView.LayoutManager mLayoutManager = null;
+        if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        } else {
+            mLayoutManager = new GridLayoutManager(getActivity(), 1);
+        }
         myRecyclerView.setLayoutManager(mLayoutManager);
+
+        inputManager = (InputMethodManager)getActivity()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
 
         new GetHeroes(getActivity().getApplicationContext()).execute();
     }
@@ -95,7 +128,71 @@ public class HeroListFragment extends Fragment implements ObservableScrollViewCa
     }
 
     @Override
-    public void onScrollChanged(int i, boolean b, boolean b2) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView fsv = null;
+
+        if (item != null) {
+            fsv = (SearchView) MenuItemCompat.getActionView(item);
+            MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
+                @Override
+                public boolean onMenuItemActionExpand(MenuItem menuItem) {
+                    return true;
+                }
+
+                @Override
+                public boolean onMenuItemActionCollapse(MenuItem menuItem) {
+                    inputManager.hideSoftInputFromWindow(rlHeroList.getApplicationWindowToken(), 0);
+                    return true;
+                }
+            });
+        }
+
+        if (fsv != null) {
+
+            fsv.setIconifiedByDefault(false);
+            fsv.requestFocus();
+            fsv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    if (myRecyclerView.getAdapter() != null) {
+                        if (TextUtils.isEmpty(s)) {
+                            ((Filterable) myRecyclerView.getAdapter()).getFilter().filter("");
+                        } else {
+                            ((Filterable) myRecyclerView.getAdapter()).getFilter().filter(s);
+                        }
+                    }
+                    return false;
+                }
+            });
+            fsv.setLayoutTransition(new LayoutTransition());
+        }
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                SearchView fsv = (SearchView) MenuItemCompat.getActionView(item);
+                TextView searchText = (TextView) fsv.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+                fsv.requestFocus();
+                inputManager.toggleSoftInputFromWindow(rlHeroList.getApplicationWindowToken(), InputMethodManager.SHOW_FORCED, 0);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onScrollChanged(int i, boolean b, boolean b1) {
 
     }
 
@@ -106,16 +203,16 @@ public class HeroListFragment extends Fragment implements ObservableScrollViewCa
 
     @Override
     public void onUpOrCancelMotionEvent(ScrollState scrollState) {
-//        ActionBar ab = ((ActionBarActivity) getActivity()).getSupportActionBar();
-//        if (scrollState == ScrollState.UP) {
-//            if (ab.isShowing()) {
-//                ab.hide();
-//            }
-//        } else if (scrollState == ScrollState.DOWN) {
-//            if (!ab.isShowing()) {
-//                ab.show();
-//            }
-//        }
+        ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        if (scrollState == ScrollState.UP) {
+            if (ab.isShowing()) {
+                ab.hide();
+            }
+        } else if (scrollState == ScrollState.DOWN) {
+            if (!ab.isShowing()) {
+                ab.show();
+            }
+        }
     }
 
     private class GetHeroes extends AsyncTask<Void, Void, ArrayList<Hero>> {
@@ -145,7 +242,6 @@ public class HeroListFragment extends Fragment implements ObservableScrollViewCa
         @Override
         protected void onPostExecute(final ArrayList<Hero> heroList) {
             super.onPostExecute(heroList);
-            db.close();
             //dialog.cancel();
 
             MyAdapter adapter = new MyAdapter(getActivity(), heroList);
@@ -156,33 +252,15 @@ public class HeroListFragment extends Fragment implements ObservableScrollViewCa
                         public void onItemClick(View view, int position) {
 
                             Intent intent = new Intent(getActivity(), HeroActivity.class);
-                            intent.putExtra("hero", heroList.get(position));
+                            intent.putExtra("hero", db.getHeroById((int)view.findViewById(R.id.textView).getTag()));
                             startActivity(intent);
 
                         }
                     })
             );
-
+            db.close();
             myRecyclerView.setScrollViewCallbacks(HeroListFragment.this);
-            myRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-                int mLastFirstVisibleItem = 0;
-
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                    super.onScrolled(recyclerView, dx, dy);
-                    final int currentFirstVisibleItem = ((LinearLayoutManager)mLayoutManager).findFirstVisibleItemPosition();
-
-                    if (currentFirstVisibleItem > this.mLastFirstVisibleItem) {
-                        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-                    } else if (currentFirstVisibleItem < this.mLastFirstVisibleItem) {
-                        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-                    }
-
-                    this.mLastFirstVisibleItem = currentFirstVisibleItem;
-
-                }
-            });
         }
     }
 }

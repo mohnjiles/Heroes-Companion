@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rlHeroList"
     tools:context=".MainActivity$HeroListFragment">
 
 
@@ -9,8 +10,7 @@
             android:id="@+id/my_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/dat_purple"
-            android:paddingTop="?android:attr/actionBarSize"
+            android:background="@color/gray_900"
             android:clipToPadding="false"
             android:scrollbarStyle="outsideOverlay"/>
 

@@ -11,9 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scrollbarStyle="outsideOverlay"
-        android:paddingRight="16dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true">
+        android:paddingRight="16dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -39,7 +37,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:background="@color/deep_purple_300"
+                    android:background="@color/primary"
                     android:elevation="16dp"
                     android:text="All"
                     android:textColor="#FFFFFF" />
@@ -115,13 +113,12 @@
                 android:id="@+id/rippleView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rippleView4"
-                android:layout_marginTop="16dp"
-                android:layout_alignRight="@+id/rippleView2"
-                android:layout_alignEnd="@+id/rippleView2"
                 app:rv_rippleDuration="150"
                 app:rv_zoom="false"
-                app:rv_zoomScale="1.0">
+                app:rv_zoomScale="1.0"
+                android:layout_alignTop="@+id/rippleView"
+                android:layout_toRightOf="@+id/rippleView"
+                android:layout_marginLeft="16dp">
 
                 <Button
                     android:id="@+id/btnLvl10"
@@ -137,13 +134,12 @@
                 android:id="@+id/rippleView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rippleView5"
-                android:layout_marginTop="16dp"
-                android:layout_alignRight="@+id/rippleView2"
-                android:layout_alignEnd="@+id/rippleView2"
                 app:rv_rippleDuration="150"
                 app:rv_zoom="false"
-                app:rv_zoomScale="1.0">
+                app:rv_zoomScale="1.0"
+                android:layout_alignTop="@+id/rippleView2"
+                android:layout_alignLeft="@+id/rippleView5"
+                android:layout_alignStart="@+id/rippleView5">
 
                 <Button
                     android:id="@+id/btnLvl13"
@@ -159,13 +155,12 @@
                 android:id="@+id/rippleView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rippleView6"
-                android:layout_marginTop="16dp"
-                android:layout_alignRight="@+id/rippleView2"
-                android:layout_alignEnd="@+id/rippleView2"
                 app:rv_rippleDuration="150"
                 app:rv_zoom="false"
-                app:rv_zoomScale="1.0">
+                app:rv_zoomScale="1.0"
+                android:layout_alignTop="@+id/rippleView3"
+                android:layout_alignLeft="@+id/rippleView6"
+                android:layout_alignStart="@+id/rippleView6">
 
                 <Button
                     android:id="@+id/btnLvl16"
@@ -181,14 +176,12 @@
                 android:id="@+id/rippleView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rippleView7"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_alignRight="@+id/rippleView2"
-                android:layout_alignEnd="@+id/rippleView2"
                 app:rv_rippleDuration="150"
                 app:rv_zoom="false"
-                app:rv_zoomScale="1.0">
+                app:rv_zoomScale="1.0"
+                android:layout_alignTop="@+id/rippleView4"
+                android:layout_alignLeft="@+id/rippleView7"
+                android:layout_alignStart="@+id/rippleView7">
 
                 <Button
                     android:id="@+id/btnLvl20"

@@ -1,19 +1,20 @@
 package com.example.jt.heroes;
 
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
+import com.example.jt.heroes.adapters.SpellsAdapter;
 import com.example.jt.heroes.models.Hero;
-import com.example.jt.heroes.models.Spell;
-
-import java.util.Locale;
+import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
+import com.yqritc.recyclerviewflexibledivider.VerticalDividerItemDecoration;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -26,10 +27,11 @@ import butterknife.InjectView;
  */
 public class SpellsFragment extends Fragment {
 
-    @InjectView(R.id.rlSpells)
-    RelativeLayout rlSpells;
+    @InjectView(R.id.rvSpells)
+    ObservableRecyclerView rvSpells;
 
     private Hero hero;
+    private Toolbar toolbar;
 
     // TODO: Rename and change types and number of parameters
     public static SpellsFragment newInstance(Hero hero) {
@@ -61,52 +63,24 @@ public class SpellsFragment extends Fragment {
         return v;
     }
 
-    static class ViewHolder {
-        @InjectView(R.id.tvSpellName)
-        TextView tvSpellName;
-        @InjectView(R.id.tvSpellText)
-        TextView tvSpellText;
-        @InjectView(R.id.ivSpellImage)
-        ImageView ivSpellImage;
-        @InjectView(R.id.tvLetter)
-        TextView tvLetter;
-
-        public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
-        }
-    }
-
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
-        int lastView = 0;
-        int counter = 1;
+        rvSpells.setHasFixedSize(true);
+        rvSpells.addItemDecoration(
+                new VerticalDividerItemDecoration.Builder(getActivity())
+                        .color(getResources().getColor(R.color.divider_color))
+                        .size(1)
+                        .build());
 
-        for (Spell spell : hero.getSpells()) {
-            ViewHolder holder;
-            RelativeLayout spellLayout;
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-            spellLayout = (RelativeLayout) getLayoutInflater(savedInstanceState)
-                    .inflate(R.layout.spell, rlSpells, false);
-            spellLayout.setId(counter);
-            holder = new ViewHolder(spellLayout);
-            view.setTag(holder);
-
-            lp.addRule(RelativeLayout.BELOW, lastView);
-            lp.setMargins(0, 16, 0, 0);
-
-            lastView = spellLayout.getId();
-
-            rlSpells.addView(spellLayout, lp);
-            holder.tvSpellName.setText(spell.getName().toUpperCase(Locale.getDefault()));
-            holder.tvSpellText.setText(spell.getDescription());
-            holder.tvLetter.setText("[ " + spell.getLetter().toUpperCase(Locale.getDefault()) + " ]");
-            holder.ivSpellImage.setImageResource(Utils.getResourceIdByName(getActivity(), Utils.formatSpellImageName(spell.getName())));
-            counter++;
+        RecyclerView.LayoutManager mLayoutManager = null;
+        if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        } else {
+            mLayoutManager = new GridLayoutManager(getActivity(), 1);
         }
-
+        rvSpells.setLayoutManager(mLayoutManager);
+        rvSpells.setAdapter(new SpellsAdapter(getActivity(), hero.getSpells()));
     }
 }

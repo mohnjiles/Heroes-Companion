@@ -1,24 +1,21 @@
 package com.example.jt.heroes;
 
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.opengl.Visibility;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.IntegerRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -44,19 +41,16 @@ public class HeroActivity extends AppCompatActivity {
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    ViewPager mViewPager;
-
     private Hero hero;
 
-    @InjectView(R.id.pager)
+    @InjectView(R.id.materialViewPager)
     ViewPager pager;
     @InjectView(R.id.tabs)
     PagerSlidingTabStrip tabs;
     @InjectView(R.id.rlHeroActivity)
     RelativeLayout relativeLayout;
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +60,15 @@ public class HeroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hero);
         ButterKnife.inject(this);
 
-        // Set up the action bar.
-        final ActionBar actionBar = getSupportActionBar();
-        actionBar.setElevation(0);
-//        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        setSupportActionBar(toolbar);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.dark_primary));
+        }
+
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -80,19 +79,17 @@ public class HeroActivity extends AppCompatActivity {
         final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
                 .getDisplayMetrics());
         pager.setPageMargin(pageMargin);
-
         tabs.setViewPager(pager);
-        tabs.setBackgroundColor(getResources().getColor(R.color.purple_900));
+        tabs.setBackgroundColor(getResources().getColor(R.color.primary));
         tabs.setTextColor(Color.WHITE);
         tabs.setIndicatorColor(Color.WHITE);
-        tabs.setDividerColor(getResources().getColor(R.color.purple_900));
+        tabs.setDividerColor(getResources().getColor(R.color.primary));
         tabs.setIndicatorHeight(4);
 
         float actionBarHeight = 0;
         TypedValue tv = new TypedValue();
-        if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true))
-        {
-            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data,getResources().getDisplayMetrics());
+        if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
         }
 
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, Math.round(Utils.getPixelsFromDp(48, this)));
@@ -100,32 +97,32 @@ public class HeroActivity extends AppCompatActivity {
         lp.setMargins(0, Math.round(actionBarHeight), 0, 0);
         tabs.setLayoutParams(lp);
 
-        // When swiping between different sections, select the corresponding
-        // tab. We can also use ActionBar.Tab#select() to do this if we have
-        // a reference to the Tab.
-//        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-//            @Override
-//            public void onPageSelected(int position) {
-//                actionBar.setSelectedNavigationItem(position);
-//            }
-//        });
-
-//        // For each of the sections in the app, add a tab to the action bar.
-//        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-//            // Create a tab with text corresponding to the page title defined by
-//            // the adapter. Also specify this Activity object, which implements
-//            // the TabListener interface, as the callback (listener) for when
-//            // this tab is selected.
-//            actionBar.addTab(
-//                    actionBar.newTab()
-//                            .setText(mSectionsPagerAdapter.getPageTitle(i))
-//                            .setTabListener(this));
-//        }
-
         hero = (Hero) getIntent().getSerializableExtra("hero");
+
+        toolbar.setTitle(hero.getName());
+        if (toolbar != null) {
+
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+        }
+
+//        propagateToolbarState(toolbarIsShown());
+
+
     }
+
     public RelativeLayout getLayout() {
         return relativeLayout;
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
+
+    public PagerSlidingTabStrip getTabs() {
+        return tabs;
     }
 
     @Override
@@ -152,6 +149,7 @@ public class HeroActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -184,6 +182,7 @@ public class HeroActivity extends AppCompatActivity {
             // Show 3 total pages.
             return 3;
         }
+
 
         @Override
         public int getItemPosition(Object object) {

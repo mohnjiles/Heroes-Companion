@@ -5,8 +5,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:clipToPadding="false"
-    android:scrollbarStyle="outsideOverlay"
-    android:background="@color/dat_purple">
+    android:scrollbarStyle="outsideOverlay">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/tv_hero_title"
-            android:background="@android:color/white"
+            android:background="@color/divider_color"
             android:id="@+id/view" />
 
         <TextView
@@ -48,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/tv_stats_title_1"
-            android:background="@android:color/white"
+            android:background="@color/divider_color"
             android:id="@+id/view2" />
 
         <TableLayout
@@ -165,7 +164,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/tvStatsTitle2"
-            android:background="@android:color/white"
+            android:background="@color/divider_color"
             android:id="@+id/view3" />
 
         <TableLayout

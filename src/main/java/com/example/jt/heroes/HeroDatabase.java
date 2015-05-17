@@ -11,6 +11,7 @@ import com.example.jt.heroes.models.Spell;
 import com.example.jt.heroes.models.Talent;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
+import java.sql.SQLClientInfoException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,16 +20,16 @@ import java.util.List;
  */
 public class HeroDatabase extends SQLiteAssetHelper {
 
-    private static final String DATABASE_NAME = "heroes";
+    private static final String DATABASE_NAME = "heroes-magic";
     private static final int DATABASE_VERSION = 1;
     private Context context;
 
-    public HeroDatabase (Context context) {
-        super (context, DATABASE_NAME, null, DATABASE_VERSION);
+    public HeroDatabase(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
 
-    private void addHero(Hero hero, SQLiteDatabase db) {
+    public void addHero(Hero hero, SQLiteDatabase db) {
         ContentValues cv = new ContentValues();
 
         cv.put("id", hero.getId());
@@ -49,13 +50,13 @@ public class HeroDatabase extends SQLiteAssetHelper {
         cv.put("energy_per_level", hero.getManaPerLevel());
         cv.put("energy_regen_per_level", hero.getManaRegenPerLevel());
         cv.put("lore", hero.getLore());
+        cv.put("description", hero.getDescription());
 
         db.insert("heroes", null, cv);
 
-        db.close();
     }
 
-    private void addSpell(Spell spell, SQLiteDatabase db) {
+    public void addSpell(Spell spell, SQLiteDatabase db) {
         ContentValues values = new ContentValues();
 
         values.put("hero_id", spell.getHeroId());
@@ -85,12 +86,103 @@ public class HeroDatabase extends SQLiteAssetHelper {
 
 
         cv.put("description", description);
-        db.update("heroes", cv, "id = ?", new String[] {String.valueOf(heroId)});
+        db.update("heroes", cv, "id = ?", new String[]{String.valueOf(heroId)});
 
         Log.d("Insert Descriptions", String.format("Inserted description for hero %d: %s", heroId, description));
     }
 
-    protected List<Hero> getAllHeroes() {
+    public int getHeroIdFromName(String heroName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT id FROM heroes WHERE name = ?", new String[]{heroName});
+
+        if (cursor.moveToFirst()) {
+            int value = Integer.parseInt(cursor.getString(0));
+            cursor.close();
+            return value;
+        }
+
+        cursor.close();
+        return 0;
+    }
+
+    public Hero getHeroById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM heroes WHERE id = ?", new String[]{String.valueOf(id)});
+        
+        if (cursor.moveToFirst()) {
+            Hero hero = new Hero();
+            hero.setId(Integer.parseInt(cursor.getString(0)));
+            hero.setName(cursor.getString(1));
+            hero.setTitle(cursor.getString(2));
+            hero.setRole(cursor.getString(3));
+            hero.setFranchise(cursor.getString(4));
+            hero.setType(cursor.getString(5));
+            hero.setHp(Integer.parseInt(cursor.getString(6)));
+            hero.setHpRegen(Double.parseDouble(cursor.getString(7)));
+            hero.setMana(Integer.parseInt(cursor.getString(8)));
+            hero.setManaRegen(Double.parseDouble(cursor.getString(9)));
+//                hero.setSpeed(Double.parseDouble(cursor.getString(10)));
+            hero.setAttackSpeed(Double.parseDouble(cursor.getString(11)));
+//                hero.setAttackRange(Double.parseDouble(cursor.getString(12)));
+            hero.setAttackDamage(Integer.parseInt(cursor.getString(13)));
+            hero.setHpPerLevel(Integer.parseInt(cursor.getString(14)));
+            hero.setHpRegenPerLevel(Double.parseDouble(cursor.getString(15)));
+            hero.setAttackDamagePerLevel(Double.parseDouble(cursor.getString(16)));
+            hero.setManaPerLevel(Integer.parseInt(cursor.getString(17)));
+            hero.setManaRegenPerLevel(Double.parseDouble(cursor.getString(18)));
+            hero.setLore(cursor.getString(19));
+            hero.setDescription(cursor.getString(20));
+            hero.setIconResourceId(Utils.getResourceIdByName(context, hero.getName()));
+
+            Cursor spellCursor = db.rawQuery("SELECT * FROM spells WHERE hero_id = ?",
+                    new String[]{String.valueOf(hero.getId())});
+            List<Spell> spellList = new ArrayList<>();
+            if (spellCursor.moveToFirst()) {
+                do {
+                    Spell spell = new Spell();
+                    spell.setHeroId(Integer.valueOf(spellCursor.getString(1)));
+                    spell.setName(spellCursor.getString(2));
+                    spell.setCost(Double.valueOf(spellCursor.getString(3)) + 0);
+                    spell.setCooldown(Double.valueOf(spellCursor.getString(4)) + 0);
+                    spell.setDescription(spellCursor.getString(5));
+                    spell.setLetter(spellCursor.getString(6));
+
+                    spellList.add(spell);
+                } while (spellCursor.moveToNext());
+
+                spellCursor.close();
+            }
+
+            hero.setSpells(spellList);
+
+            Cursor talentCursor = db.rawQuery("SELECT * FROM talents WHERE hero_id = ?",
+                    new String[]{String.valueOf(hero.getId())});
+
+            List<Talent> talentList = new ArrayList<>();
+
+            if (talentCursor.moveToFirst()) {
+                do {
+                    Talent talent = new Talent();
+                    talent.setHeroId(Integer.valueOf(talentCursor.getString(1)));
+                    talent.setTalentTier(Integer.valueOf(talentCursor.getString(2)));
+                    talent.setName(talentCursor.getString(3));
+                    talent.setDescription(talentCursor.getString(4));
+
+                    talentList.add(talent);
+                } while (talentCursor.moveToNext());
+
+                talentCursor.close();
+            }
+
+            hero.setTalents(talentList);
+
+            return hero;
+        }
+        
+        return null;
+    }
+
+    public List<Hero> getAllHeroes() {
         List<Hero> listHeroes = new ArrayList<Hero>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -123,15 +215,15 @@ public class HeroDatabase extends SQLiteAssetHelper {
                 hero.setIconResourceId(Utils.getResourceIdByName(context, hero.getName()));
 
                 Cursor spellCursor = db.rawQuery("SELECT * FROM spells WHERE hero_id = ?",
-                        new String[] { String.valueOf(hero.getId()) });
+                        new String[]{String.valueOf(hero.getId())});
                 List<Spell> spellList = new ArrayList<>();
                 if (spellCursor.moveToFirst()) {
                     do {
                         Spell spell = new Spell();
                         spell.setHeroId(Integer.valueOf(spellCursor.getString(1)));
                         spell.setName(spellCursor.getString(2));
-                        spell.setCost(Integer.valueOf(spellCursor.getString(3)));
-                        spell.setCooldown(Integer.valueOf(spellCursor.getString(4)));
+                        spell.setCost(Double.valueOf(spellCursor.getString(3)) + 0);
+                        spell.setCooldown(Double.valueOf(spellCursor.getString(4)) + 0);
                         spell.setDescription(spellCursor.getString(5));
                         spell.setLetter(spellCursor.getString(6));
 
@@ -144,7 +236,7 @@ public class HeroDatabase extends SQLiteAssetHelper {
                 hero.setSpells(spellList);
 
                 Cursor talentCursor = db.rawQuery("SELECT * FROM talents WHERE hero_id = ?",
-                        new String[] { String.valueOf(hero.getId()) });
+                        new String[]{String.valueOf(hero.getId())});
 
                 List<Talent> talentList = new ArrayList<>();
 
