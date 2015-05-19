@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +20,8 @@ import android.widget.Toast;
 import com.example.jt.heroes.adapters.NewsAdapter;
 import com.example.jt.heroes.models.News;
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import org.jsoup.Jsoup;
@@ -37,7 +41,7 @@ import butterknife.InjectView;
  * Use the {@link NewsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewsFragment extends Fragment {
+public class NewsFragment extends Fragment implements ObservableScrollViewCallbacks {
 
     @InjectView(R.id.rvNews)
     ObservableRecyclerView rvNews;
@@ -83,12 +87,36 @@ public class NewsFragment extends Fragment {
         rvNews.setHasFixedSize(true);
         rvNews.addItemDecoration(
                 new HorizontalDividerItemDecoration.Builder(getActivity())
-                        .color(getResources().getColor(R.color.divider_color))
-                        .size(1)
+                        .color(getResources().getColor(R.color.super_dark_purple))
+                        .size(64)
                         .build());
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         rvNews.setLayoutManager(mLayoutManager);
         new GetNews().execute();
+    }
+
+    @Override
+    public void onScrollChanged(int i, boolean b, boolean b1) {
+
+    }
+
+    @Override
+    public void onDownMotionEvent() {
+
+    }
+
+    @Override
+    public void onUpOrCancelMotionEvent(ScrollState scrollState) {
+        ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        if (scrollState == ScrollState.UP) {
+            if (ab.isShowing()) {
+                ab.hide();
+            }
+        } else if (scrollState == ScrollState.DOWN) {
+            if (!ab.isShowing()) {
+                ab.show();
+            }
+        }
     }
 
     private class GetNews extends AsyncTask<Void, Void, Integer> {
@@ -166,6 +194,7 @@ public class NewsFragment extends Fragment {
                         startActivity(i);
                     }
                 }));
+                rvNews.setScrollViewCallbacks(NewsFragment.this);
             }
         }
     }

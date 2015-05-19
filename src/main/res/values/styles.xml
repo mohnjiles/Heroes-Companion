@@ -13,11 +13,14 @@
     <color name="blue_500">#2196F3</color>
     <color name="purple_500">#9C27B0</color>
     <color name="teal_500">#009688</color>
+    <color name="sorta_dark_purple">#271559</color>
+    <color name="really_dark_purple">#150c35</color>
+    <color name="super_dark_purple">#0e0521</color>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:windowBackground">@color/gray_900</item>
+        <item name="android:windowBackground">@drawable/purple_gradient_bg</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorPrimaryDark">@color/dark_primary</item>

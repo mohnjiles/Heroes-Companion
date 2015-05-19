@@ -1,6 +1,7 @@
 package com.example.jt.heroes.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,8 @@ public class SpellsAdapter extends ObservableRecyclerView.Adapter<SpellsAdapter.
         TextView tvCooldown;
         @InjectView(R.id.tvCost)
         TextView tvCost;
+//        @InjectView(R.id.ivBigImage)
+//        ImageView ivBigImage;
 
         public ViewHolder(View v) {
             super(v);
@@ -68,6 +71,7 @@ public class SpellsAdapter extends ObservableRecyclerView.Adapter<SpellsAdapter.
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.spell, parent, false);
+
         // set the view's size, margins, paddings and layout parameters
         return new ViewHolder(v);
     }
@@ -110,6 +114,9 @@ public class SpellsAdapter extends ObservableRecyclerView.Adapter<SpellsAdapter.
 
         holder.tvCooldown.setText("Cooldown: " + cooldown.replace(".0", "") + " seconds");
         holder.tvCost.setText("Cost: " + cost.replace(".0", ""));
+
+//        int bigImageResId = Utils.getResourceIdByName(context, Utils.formatSpellImageName(spell.getName() + "big"));
+//        holder.ivBigImage.setImageResource(bigImageResId);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

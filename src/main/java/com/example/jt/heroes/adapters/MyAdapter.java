@@ -2,6 +2,7 @@ package com.example.jt.heroes.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.example.jt.heroes.R;
+import com.example.jt.heroes.Utils;
 import com.example.jt.heroes.models.Hero;
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -57,6 +61,9 @@ public class MyAdapter extends ObservableRecyclerView.Adapter<MyAdapter.ViewHold
 
         @InjectView(R.id.tvTitle)
         public TextView tvTitle;
+
+        @InjectView(R.id.ivBigHeroImage)
+        ImageView ivBigHeroImage;
 
         @InjectView(R.id.recycler_view_container)
         public RelativeLayout recyclerViewContainer;
@@ -149,6 +156,8 @@ public class MyAdapter extends ObservableRecyclerView.Adapter<MyAdapter.ViewHold
 
 
         }
+
+        holder.ivBigHeroImage.setImageResource(Utils.getResourceIdByName(context, Utils.formatSpellImageName(heroList.get(position).getName() + "big")));
         //setAnimation(holder.recyclerViewContainer, position);
     }
 

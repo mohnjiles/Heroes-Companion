@@ -3,7 +3,21 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:id="@+id/recycler_view_container"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:background="@color/sorta_dark_purple">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="220dp"
+        android:id="@+id/ivBigHeroImage"
+        android:src="@drawable/arthasbig"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:layout_marginRight="-8dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -11,12 +25,13 @@
         android:text="New Text"
         android:id="@+id/textView"
         android:fontFamily="sans-serif-light"
-        android:textSize="20dp"
-        android:layout_alignTop="@+id/ivHeroIcon"
-        android:layout_toRightOf="@+id/ivHeroIcon"
+        android:textSize="24sp"
+        android:textColor="#FFFFFF"
+        android:layout_above="@+id/ivHeroIcon"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="-8dp"
-        android:textColor="#FFFFFF" />
+        android:layout_marginBottom="32dp" />
 
     <com.makeramen.roundedimageview.RoundedImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -26,11 +41,9 @@
         android:layout_height="56dp"
         android:id="@+id/ivHeroIcon"
         android:src="@drawable/arthas"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="16dp" />
+        android:layout_alignBottom="@+id/ivBigHeroImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,12 +52,12 @@
         android:id="@+id/tvTitle"
         android:fontFamily="sans-serif-light"
         android:textSize="16dp"
+        android:textColor="#FFFFFF"
         android:layout_below="@+id/textView"
-        android:layout_toRightOf="@+id/ivHeroIcon"
-        android:layout_toEndOf="@+id/ivHeroIcon"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:textColor="#FFFFFF" />
+        android:layout_marginTop="-32dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,49 +66,49 @@
         android:fontFamily="sans-serif-light"
 
         android:id="@+id/tvDescription"
-        android:layout_below="@+id/tvTitle"
-        android:layout_marginTop="8dp"
-        android:layout_toRightOf="@+id/ivHeroIcon"
-        android:layout_marginLeft="16dp"
+        android:textColor="#B3FFFFFF"
+        android:layout_below="@+id/ivHeroIcon"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="24dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="24dp"
-        android:textColor="#B3FFFFFF" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="24dp" />
 
     <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:id="@+id/ivRoleIcon"
-        android:layout_below="@+id/ivHeroIcon"
-        android:layout_alignLeft="@+id/ivHeroIcon"
-        android:layout_alignStart="@+id/ivHeroIcon"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/warrior" />
+        android:src="@drawable/warrior"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp" />
 
     <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:id="@+id/ivFranchiseIcon"
-        android:layout_below="@+id/ivHeroIcon"
-        android:layout_toStartOf="@+id/tvDescription"
-        android:layout_toLeftOf="@+id/tvDescription"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/diablogame" />
+        android:src="@drawable/warcraftgame"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/ivRoleIcon"
+        android:layout_toEndOf="@+id/ivRoleIcon"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="Warrior"
         android:id="@+id/tvRole"
         android:fontFamily="sans-serif-light"
         android:textSize="16dp"
         android:textColor="#B3FFFFFF"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="8dp" />
+        android:layout_below="@+id/tvTitle"
+        android:layout_alignLeft="@+id/tvTitle"
+        android:layout_alignStart="@+id/tvTitle" />
+
 </RelativeLayout>

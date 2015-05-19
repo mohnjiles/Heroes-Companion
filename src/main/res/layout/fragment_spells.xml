@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
+    android:background="@drawable/purple_gradient_bg"
     android:id="@+id/rvSpells">
 
 </com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView>

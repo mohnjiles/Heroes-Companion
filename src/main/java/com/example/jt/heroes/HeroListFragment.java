@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Filterable;
+import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -97,8 +98,8 @@ public class HeroListFragment extends Fragment implements ObservableScrollViewCa
         myRecyclerView.setHasFixedSize(true);
         myRecyclerView.addItemDecoration(
                 new HorizontalDividerItemDecoration.Builder(getActivity())
-                        .color(getResources().getColor(R.color.divider_color))
-                        .size(1)
+                        .color(getResources().getColor(R.color.super_dark_purple))
+                        .size(64)
                         .build());
         myRecyclerView.addItemDecoration(
                 new VerticalDividerItemDecoration.Builder(getActivity())
@@ -116,6 +117,8 @@ public class HeroListFragment extends Fragment implements ObservableScrollViewCa
 
         inputManager = (InputMethodManager)getActivity()
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
+
+
 
         new GetHeroes(getActivity().getApplicationContext()).execute();
     }

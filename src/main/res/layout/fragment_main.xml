@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rlHeroList"
+    android:background="@color/super_dark_purple"
     tools:context=".MainActivity$HeroListFragment">
 
 
@@ -10,8 +11,10 @@
             android:id="@+id/my_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray_900"
+            android:background="@color/super_dark_purple"
             android:clipToPadding="false"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:scrollbarStyle="outsideOverlay"/>
 
 </RelativeLayout>

@@ -79,11 +79,6 @@ public class TalentFragment extends Fragment implements Button.OnClickListener {
         super.onActivityCreated(savedInstanceState);
 
         rvTalents.setHasFixedSize(true);
-        rvTalents.addItemDecoration(
-                new HorizontalDividerItemDecoration.Builder(getActivity())
-                        .color(getResources().getColor(R.color.divider_color))
-                        .size(1)
-                        .build());
         mLayoutManager = new LinearLayoutManager(getActivity());
         rvTalents.setLayoutManager(mLayoutManager);
         rvTalents.setAdapter(new TalentAdapter(getActivity(), hero));

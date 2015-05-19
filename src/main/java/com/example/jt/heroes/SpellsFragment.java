@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.jt.heroes.adapters.SpellsAdapter;
 import com.example.jt.heroes.models.Hero;
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 import com.yqritc.recyclerviewflexibledivider.VerticalDividerItemDecoration;
 
 import butterknife.ButterKnife;
@@ -72,6 +73,11 @@ public class SpellsFragment extends Fragment {
                 new VerticalDividerItemDecoration.Builder(getActivity())
                         .color(getResources().getColor(R.color.divider_color))
                         .size(1)
+                        .build());
+        rvSpells.addItemDecoration(
+                new HorizontalDividerItemDecoration.Builder(getActivity())
+                        .color(getResources().getColor(android.R.color.transparent))
+                        .size(64)
                         .build());
 
         RecyclerView.LayoutManager mLayoutManager = null;

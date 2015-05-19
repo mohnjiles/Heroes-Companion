@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/purple_gradient_bg"
+    android:orientation="vertical"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    >
+
+    <ImageView
+        android:id="@+id/ivBigImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/webblastbig"
+        android:layout_marginTop="-32dp" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ivSpellImage"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        app:riv_border_width="2dip"
+        app:riv_border_color="#828dd4"
+        android:src="@drawable/spidermines"
+        android:layout_above="@+id/tvSpellName"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tvSpellName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="SINGULARITY SPIKE"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:layout_below="@+id/ivBigImage"
+        android:layout_alignLeft="@+id/tvSpellText"
+        android:layout_alignStart="@+id/tvSpellText"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/tvSpellText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvSpellName"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-light"
+        android:lineSpacingExtra="1.5dp"
+        android:text="Flings a Singularity Spike that sticks to the first enemy hit. Deals 500 (120 + 20 per level) damage after 1 second and slows the enemy by 40% for 3 seconds."
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tvLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvSpellName"
+        android:layout_alignBottom="@+id/tvSpellName"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="[ TRAIT ]"
+        android:textColor="#B3FFFFFF"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvCooldown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvSpellText"
+        android:layout_alignStart="@+id/tvSpellText"
+        android:layout_below="@+id/tvSpellText"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif-light"
+        android:lineSpacingExtra="1.5dp"
+        android:text="Cooldown: 10 seconds"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#B3FFFFFF" />
+
+    <TextView
+        android:id="@+id/tvCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvSpellText"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_toEndOf="@+id/tvCooldown"
+        android:layout_toRightOf="@+id/tvCooldown"
+        android:fontFamily="sans-serif-light"
+        android:lineSpacingExtra="1.5dp"
+        android:text="Cost: 10 Mana"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#B3FFFFFF" />
+</RelativeLayout>
