@@ -1,51 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<com.andexert.library.RippleView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:rv_rippleDuration="150"
+    app:rv_zoom="false"
+    app:rv_zoomScale="1.0">
 
-    <ImageView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:id="@+id/ivTalentIcon"
-        android:src="@drawable/archon"
-        android:layout_alignTop="@+id/view"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" />
-    <View
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
-        android:background="@color/divider_color"
-        android:id="@+id/view"
-        android:layout_below="@+id/tvTalentName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GATHERING POWER"
-        android:id="@+id/tvTalentName"
-        android:fontFamily="sans-serif-light"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        <ImageView
+            android:id="@+id/ivTalentIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/view"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/archon" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Passively grants 5% Ability Power. Each Hero takedown increases this bonus by 2% to a maximum of 15%. This bonus Ability Power is reset to 5% on death."
-        android:id="@+id/tvTalentDescription"
-        android:textColor="#B3FFFFFF"
-        android:textSize="12sp"
-        android:layout_below="@+id/tvTalentName"
-        android:fontFamily="sans-serif-light"
-        android:layout_marginTop="11dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_toRightOf="@+id/ivTalentIcon"
-        android:layout_toEndOf="@+id/ivTalentIcon"
-        android:layout_marginLeft="16dp" />
-</RelativeLayout>
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tvTalentName"
+            android:background="@color/divider_color" />
+
+        <TextView
+            android:id="@+id/tvTalentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-light"
+            android:text="GATHERING POWER"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvTalentDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTalentName"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="11dp"
+            android:layout_toEndOf="@+id/ivTalentIcon"
+            android:layout_toRightOf="@+id/ivTalentIcon"
+            android:fontFamily="sans-serif-light"
+            android:text="Passively grants 5% Ability Power. Each Hero takedown increases this bonus by 2% to a maximum of 15%. This bonus Ability Power is reset to 5% on death."
+            android:textColor="#B3FFFFFF"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</com.andexert.library.RippleView>

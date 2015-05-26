@@ -2,6 +2,7 @@ package com.example.jt.heroes.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -157,7 +158,8 @@ public class MyAdapter extends ObservableRecyclerView.Adapter<MyAdapter.ViewHold
 
         }
 
-        holder.ivBigHeroImage.setImageResource(Utils.getResourceIdByName(context, Utils.formatSpellImageName(heroList.get(position).getName() + "big")));
+        holder.ivBigHeroImage.setImageResource(Utils.getResourceIdByName(context,
+                Utils.formatSpellImageName(heroList.get(position).getName() + "big")));
         //setAnimation(holder.recyclerViewContainer, position);
     }
 

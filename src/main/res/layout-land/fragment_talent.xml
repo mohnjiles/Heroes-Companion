@@ -30,7 +30,7 @@
                 app:rv_zoom="false"
                 app:rv_zoomScale="1.0">
 
-                <Button
+                <com.example.jt.heroes.TalentButton
                     android:id="@+id/btnAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 app:rv_zoom="false"
                 app:rv_zoomScale="1.0">
 
-                <Button
+                <com.example.jt.heroes.TalentButton
                     android:id="@+id/btnLvl1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
                 android:layout_alignRight="@+id/rippleView2"
                 android:layout_alignEnd="@+id/rippleView2">
 
-                <Button
+                <com.example.jt.heroes.TalentButton
                     android:id="@+id/btnLvl4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 app:rv_zoom="false"
                 app:rv_zoomScale="1.0">
 
-                <Button
+                <com.example.jt.heroes.TalentButton
                     android:id="@+id/btnLvl7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
                 android:layout_toRightOf="@+id/rippleView"
                 android:layout_marginLeft="16dp">
 
-                <Button
+                <com.example.jt.heroes.TalentButton
                     android:id="@+id/btnLvl10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
                 android:layout_alignLeft="@+id/rippleView5"
                 android:layout_alignStart="@+id/rippleView5">
 
-                <Button
+                <com.example.jt.heroes.TalentButton
                     android:id="@+id/btnLvl13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
                 android:layout_alignLeft="@+id/rippleView6"
                 android:layout_alignStart="@+id/rippleView6">
 
-                <Button
+                <com.example.jt.heroes.TalentButton
                     android:id="@+id/btnLvl16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -183,7 +183,7 @@
                 android:layout_alignLeft="@+id/rippleView7"
                 android:layout_alignStart="@+id/rippleView7">
 
-                <Button
+                <com.example.jt.heroes.TalentButton
                     android:id="@+id/btnLvl20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

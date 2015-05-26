@@ -6,210 +6,100 @@
     android:background="@drawable/purple_gradient_bg"
     tools:context="com.example.jt.heroes.TalentFragment">
 
-    <ScrollView
-        android:id="@+id/theScrollView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scrollbarStyle="outsideOverlay"
-        android:paddingRight="16dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <com.andexert.library.RippleView
-                android:id="@+id/rippleView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                app:rv_rippleDuration="150"
-                app:rv_zoom="false"
-                app:rv_zoomScale="1.0">
-
-                <Button
-                    android:id="@+id/btnAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:background="@color/deep_purple_300"
-                    android:elevation="16dp"
-                    android:text="All"
-                    android:textColor="#FFFFFF" />
-            </com.andexert.library.RippleView>
-
-            <com.andexert.library.RippleView
-                android:id="@+id/rippleView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/rippleView"
-                android:layout_alignStart="@+id/rippleView"
-                android:layout_below="@+id/rippleView"
-                android:layout_marginTop="16dp"
-                app:rv_rippleDuration="150"
-                app:rv_zoom="false"
-                app:rv_zoomScale="1.0">
-
-                <Button
-                    android:id="@+id/btnLvl1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/primary"
-                    android:text="1"
-                    android:textColor="#FFFFFF" />
-
-            </com.andexert.library.RippleView>
-
-            <com.andexert.library.RippleView
-                android:id="@+id/rippleView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rippleView2"
-                android:layout_marginTop="16dp"
-                app:rv_rippleDuration="150"
-                app:rv_zoom="false"
-                app:rv_zoomScale="1.0"
-                android:layout_alignRight="@+id/rippleView2"
-                android:layout_alignEnd="@+id/rippleView2">
-
-                <Button
-                    android:id="@+id/btnLvl4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/primary"
-                    android:text="4"
-                    android:textColor="#FFFFFF" />
-
-            </com.andexert.library.RippleView>
-
-            <com.andexert.library.RippleView
-                android:id="@+id/rippleView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rippleView3"
-                android:layout_marginTop="16dp"
-                android:layout_alignRight="@+id/rippleView2"
-                android:layout_alignEnd="@+id/rippleView2"
-                app:rv_rippleDuration="150"
-                app:rv_zoom="false"
-                app:rv_zoomScale="1.0">
-
-                <Button
-                    android:id="@+id/btnLvl7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/primary"
-                    android:text="7"
-                    android:textColor="#FFFFFF" />
-
-            </com.andexert.library.RippleView>
-
-            <com.andexert.library.RippleView
-                android:id="@+id/rippleView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rippleView4"
-                android:layout_marginTop="16dp"
-                android:layout_alignRight="@+id/rippleView2"
-                android:layout_alignEnd="@+id/rippleView2"
-                app:rv_rippleDuration="150"
-                app:rv_zoom="false"
-                app:rv_zoomScale="1.0">
-
-                <Button
-                    android:id="@+id/btnLvl10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/primary"
-                    android:text="10"
-                    android:textColor="#FFFFFF" />
-
-            </com.andexert.library.RippleView>
-
-            <com.andexert.library.RippleView
-                android:id="@+id/rippleView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rippleView5"
-                android:layout_marginTop="16dp"
-                android:layout_alignRight="@+id/rippleView2"
-                android:layout_alignEnd="@+id/rippleView2"
-                app:rv_rippleDuration="150"
-                app:rv_zoom="false"
-                app:rv_zoomScale="1.0">
-
-                <Button
-                    android:id="@+id/btnLvl13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/primary"
-                    android:text="13"
-                    android:textColor="#FFFFFF" />
-
-            </com.andexert.library.RippleView>
-
-            <com.andexert.library.RippleView
-                android:id="@+id/rippleView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rippleView6"
-                android:layout_marginTop="16dp"
-                android:layout_alignRight="@+id/rippleView2"
-                android:layout_alignEnd="@+id/rippleView2"
-                app:rv_rippleDuration="150"
-                app:rv_zoom="false"
-                app:rv_zoomScale="1.0">
-
-                <Button
-                    android:id="@+id/btnLvl16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/primary"
-                    android:text="16"
-                    android:textColor="#FFFFFF" />
-
-            </com.andexert.library.RippleView>
-
-            <com.andexert.library.RippleView
-                android:id="@+id/rippleView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rippleView7"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_alignRight="@+id/rippleView2"
-                android:layout_alignEnd="@+id/rippleView2"
-                app:rv_rippleDuration="150"
-                app:rv_zoom="false"
-                app:rv_zoomScale="1.0">
-
-                <Button
-                    android:id="@+id/btnLvl20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/primary"
-                    android:text="20"
-                    android:textColor="#FFFFFF" />
-
-            </com.andexert.library.RippleView>
-        </RelativeLayout>
-    </ScrollView>
-
     <com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
         android:id="@+id/rvTalents"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="16dp"
-        android:layout_toEndOf="@+id/theScrollView"
-        android:layout_toRightOf="@+id/theScrollView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/linearLayout"
         android:scrollbarStyle="outsideOverlay" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ivLvl1"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="16dp"
+            app:riv_border_color="#000000"
+            app:riv_border_width="1dp"
+            app:riv_corner_radius="0dp"
+            android:layout_weight="1"/>
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ivLvl4"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            app:riv_border_color="#000000"
+            app:riv_border_width="1dp"
+            app:riv_corner_radius="0dp"
+            android:layout_weight="1"/>
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ivLvl7"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:riv_border_color="#000000"
+            app:riv_border_width="1dp"
+            app:riv_corner_radius="0dp"
+            android:layout_weight="1"/>
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ivLvl10"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:riv_border_color="#000000"
+            app:riv_border_width="1dp"
+            app:riv_corner_radius="0dp"
+            android:layout_weight="1"/>
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ivLvl13"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:riv_border_color="#000000"
+            app:riv_border_width="1dp"
+            app:riv_corner_radius="0dp"
+            android:layout_weight="1"/>
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ivLvl16"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:riv_border_color="#000000"
+            app:riv_border_width="1dp"
+            app:riv_corner_radius="0dp"
+            android:layout_weight="1"/>
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ivLvl20"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            app:riv_border_color="#000000"
+            app:riv_border_width="1dp"
+            app:riv_corner_radius="0dp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
 
 </RelativeLayout>

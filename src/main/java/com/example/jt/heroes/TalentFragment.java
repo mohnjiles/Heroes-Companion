@@ -1,6 +1,7 @@
 package com.example.jt.heroes;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,38 +13,44 @@ import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.Filterable;
 
+import com.bignerdranch.android.multiselector.MultiSelector;
+import com.example.jt.heroes.adapters.SimpleSectionedRecyclerViewAdapter;
 import com.example.jt.heroes.adapters.TalentAdapter;
 import com.example.jt.heroes.models.Hero;
+import com.example.jt.heroes.models.Talent;
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+import com.makeramen.roundedimageview.RoundedImageView;
+
+import java.net.MulticastSocket;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 
-public class TalentFragment extends Fragment implements Button.OnClickListener {
+public class TalentFragment extends Fragment  {
 
     private Hero hero;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private MultiSelector mMultiSelector = new MultiSelector();
 
     @InjectView(R.id.rvTalents)
     ObservableRecyclerView rvTalents;
-    @InjectView(R.id.btnAll)
-    Button btnAll;
-    @InjectView(R.id.btnLvl1)
-    Button btnLvl1;
-    @InjectView(R.id.btnLvl4)
-    Button btnLvl4;
-    @InjectView(R.id.btnLvl7)
-    Button btnLvl7;
-    @InjectView(R.id.btnLvl10)
-    Button btnLvl10;
-    @InjectView(R.id.btnLvl13)
-    Button btnLvl13;
-    @InjectView(R.id.btnLvl16)
-    Button btnLvl16;
-    @InjectView(R.id.btnLvl20)
-    Button btnLvl20;
+
+    @InjectView(R.id.ivLvl1)
+    RoundedImageView ivLvl1;
+    @InjectView(R.id.ivLvl4)
+    RoundedImageView ivLvl4;
+    @InjectView(R.id.ivLvl7)
+    RoundedImageView ivLvl7;
+    @InjectView(R.id.ivLvl10)
+    RoundedImageView ivLvl10;
+    @InjectView(R.id.ivLvl13)
+    RoundedImageView ivLvl13;
+    @InjectView(R.id.ivLvl16)
+    RoundedImageView ivLvl16;
+    @InjectView(R.id.ivLvl20)
+    RoundedImageView ivLvl20;
 
     public static TalentFragment newInstance(Hero hero) {
         TalentFragment fragment = new TalentFragment();
@@ -79,73 +86,88 @@ public class TalentFragment extends Fragment implements Button.OnClickListener {
         super.onActivityCreated(savedInstanceState);
 
         rvTalents.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         rvTalents.setLayoutManager(mLayoutManager);
-        rvTalents.setAdapter(new TalentAdapter(getActivity(), hero));
 
-        btnAll.setOnClickListener(this);
-        btnLvl1.setOnClickListener(this);
-        btnLvl4.setOnClickListener(this);
-        btnLvl7.setOnClickListener(this);
-        btnLvl10.setOnClickListener(this);
-        btnLvl13.setOnClickListener(this);
-        btnLvl16.setOnClickListener(this);
-        btnLvl20.setOnClickListener(this);
+        int lvl1 = 0, lvl4 = 0, lvl7 = 0, lvl10 = 0, lvl13 = 0, lvl16 = 0, lvl20 = 0;
 
-    }
-
-    @Override
-    public void onClick(View view) {
-
-        if (rvTalents.getAdapter() != null) {
-
-            clearButtonSelection();
-            view.setBackgroundColor(getResources().getColor(R.color.deep_purple_300));
-
-            switch (view.getId()) {
-                case R.id.btnAll:
-                    ((Filterable) rvTalents.getAdapter()).getFilter().filter("All");
+        for (Talent t : hero.getTalents()) {
+            switch (t.getTalentTier()) {
+                case 1:
+                    lvl1++;
+                case 4:
+                    lvl4++;
+                case 7:
+                    lvl7++;
+                case 10:
+                    lvl10++;
+                case 13:
+                    lvl13++;
+                case 16:
+                    lvl16++;
+                case 20:
+                    lvl20++;
                     break;
-                case R.id.btnLvl1:
-                    ((Filterable) rvTalents.getAdapter()).getFilter().filter("1");
-                    break;
-                case R.id.btnLvl4:
-                    ((Filterable) rvTalents.getAdapter()).getFilter().filter("4");
-                    break;
-                case R.id.btnLvl7:
-                    ((Filterable) rvTalents.getAdapter()).getFilter().filter("7");
-                    break;
-                case R.id.btnLvl10:
-                    ((Filterable) rvTalents.getAdapter()).getFilter().filter("10");
-                    break;
-                case R.id.btnLvl13:
-                    ((Filterable) rvTalents.getAdapter()).getFilter().filter("13");
-                    break;
-                case R.id.btnLvl16:
-                    ((Filterable) rvTalents.getAdapter()).getFilter().filter("16");
-                    break;
-                case R.id.btnLvl20:
-                    ((Filterable) rvTalents.getAdapter()).getFilter().filter("20");
-                    break;
-
             }
 
-            AlphaAnimation anim = new AlphaAnimation(0.1f, 1.0f);
-            anim.setDuration(200);
-            anim.setFillAfter(true);
-            rvTalents.startAnimation(anim);
         }
+
+        mMultiSelector.setSelectable(true);
+        TalentAdapter talentAdapter = new TalentAdapter(getActivity(), hero, this, mMultiSelector);
+
+        List<SimpleSectionedRecyclerViewAdapter.Section> sections = new ArrayList<>();
+        sections.add(new SimpleSectionedRecyclerViewAdapter.Section(0, "Level 1"));
+        sections.add(new SimpleSectionedRecyclerViewAdapter.Section(lvl1, "Level 4"));
+        sections.add(new SimpleSectionedRecyclerViewAdapter.Section(lvl4, "Level 7"));
+        sections.add(new SimpleSectionedRecyclerViewAdapter.Section(lvl7, "Level 10"));
+        sections.add(new SimpleSectionedRecyclerViewAdapter.Section(lvl10, "Level 13"));
+        sections.add(new SimpleSectionedRecyclerViewAdapter.Section(lvl13, "Level 16"));
+        sections.add(new SimpleSectionedRecyclerViewAdapter.Section(lvl16, "Level 20"));
+
+        SimpleSectionedRecyclerViewAdapter.Section[] dummy = new SimpleSectionedRecyclerViewAdapter.Section[sections.size()];
+        SimpleSectionedRecyclerViewAdapter mSectionedAdapter = new
+                SimpleSectionedRecyclerViewAdapter(getActivity(), R.layout.section, R.id.section_text, talentAdapter);
+        mSectionedAdapter.setSections(sections.toArray(dummy));
+
+        rvTalents.setAdapter(mSectionedAdapter);
+
+//        rvTalents.addOnItemTouchListener(
+//                new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(View view, int position) {
+//
+//                        Talent talent = (Talent) view.findViewById(R.id.tvTalentName).getTag();
+//
+//                    }
+//                })
+//        );
+        
+    }
+    public RoundedImageView getIvLvl1() {
+        return ivLvl1;
     }
 
-    private void clearButtonSelection() {
-        btnAll.setBackgroundColor(getResources().getColor(R.color.primary));
-        btnLvl1.setBackgroundColor(getResources().getColor(R.color.primary));
-        btnLvl4.setBackgroundColor(getResources().getColor(R.color.primary));
-        btnLvl7.setBackgroundColor(getResources().getColor(R.color.primary));
-        btnLvl10.setBackgroundColor(getResources().getColor(R.color.primary));
-        btnLvl13.setBackgroundColor(getResources().getColor(R.color.primary));
-        btnLvl16.setBackgroundColor(getResources().getColor(R.color.primary));
-        btnLvl20.setBackgroundColor(getResources().getColor(R.color.primary));
+    public RoundedImageView getIvLvl4() {
+        return ivLvl4;
+    }
 
+    public RoundedImageView getIvLvl7() {
+        return ivLvl7;
+    }
+
+    public RoundedImageView getIvLvl10() {
+        return ivLvl10;
+    }
+
+    public RoundedImageView getIvLvl13() {
+        return ivLvl13;
+    }
+
+    public RoundedImageView getIvLvl16() {
+        return ivLvl16;
+    }
+
+    public RoundedImageView getIvLvl20() {
+        return ivLvl20;
     }
 }

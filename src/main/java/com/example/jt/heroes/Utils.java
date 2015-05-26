@@ -32,6 +32,14 @@ public class Utils {
         return resources.getIdentifier(drawableName, "drawable", context.getPackageName());
     }
 
+    public static int getRawResourceByName(Context context, String name) {
+        Resources resources = context.getResources();
+
+        String rawFileName = name.replaceAll("[^A-Za-z]", "").toLowerCase();
+
+        return resources.getIdentifier(rawFileName, "raw", context.getPackageName());
+    }
+
     static float getPixelsFromDp(int dp, Context cxt) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, cxt.getResources().getDisplayMetrics());
     }
