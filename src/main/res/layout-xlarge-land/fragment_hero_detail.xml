@@ -11,17 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="404dp">
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="600dp"
             android:layout_height="220dp"
             android:id="@+id/ivBigHeroImage"
             android:src="@drawable/zeratulbig"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_centerHorizontal="true" />
         <TextView
             android:id="@+id/tv_hero_title"
             android:layout_width="fill_parent"
@@ -31,10 +28,13 @@
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:layout_above="@+id/tvSubTitle"
-            android:layout_alignLeft="@+id/tvSubTitle"
-            android:layout_alignStart="@+id/tvSubTitle"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:layout_alignLeft="@+id/ivBigHeroImage"
+            android:layout_alignStart="@+id/ivBigHeroImage"
+            android:layout_alignRight="@+id/ivBigHeroImage"
+            android:layout_alignEnd="@+id/ivBigHeroImage"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
 
         <TextView
             android:id="@+id/tv_stats_title_1"
@@ -49,8 +49,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp" />
+            android:layout_marginRight="64dp"
+            android:layout_marginLeft="64dp" />
 
         <View
             android:layout_width="match_parent"
@@ -58,8 +58,8 @@
             android:layout_below="@id/tv_stats_title_1"
             android:background="@color/divider_color"
             android:id="@+id/view2"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp" />
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp" />
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -70,8 +70,9 @@
             android:layout_below="@+id/view2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:layout_marginTop="16dp">
 
             <TableRow
                 android:id="@+id/rowRole"
@@ -180,8 +181,8 @@
             android:layout_below="@id/tvStatsTitle2"
             android:background="@color/divider_color"
             android:id="@+id/view3"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp" />
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp" />
 
         <TableLayout
             android:id="@+id/tableLayout2"
@@ -192,8 +193,9 @@
             android:layout_below="@+id/view3"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:layout_marginTop="16dp">
 
             <TableRow
                 android:id="@+id/rowTitles"
@@ -473,8 +475,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="16dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginLeft="32dp" />
+            android:layout_marginRight="64dp"
+            android:layout_marginLeft="64dp" />
 
         <ImageView
             android:layout_width="48dp"
@@ -482,10 +484,10 @@
             android:id="@+id/ivRole"
             android:src="@drawable/warrior"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp" />
+            android:layout_alignLeft="@+id/ivBigHeroImage"
+            android:layout_alignStart="@+id/ivBigHeroImage"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp" />
 
         <ImageView
             android:layout_width="48dp"
@@ -511,16 +513,16 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="32dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp" />
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/textView2"
             android:background="@color/divider_color"
             android:id="@+id/view4"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp" />
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp" />
 
         <TextView
             android:id="@+id/tvSubTitle"
@@ -531,10 +533,12 @@
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:layout_above="@+id/iv_hero_image"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp" />
+            android:layout_alignLeft="@+id/ivBigHeroImage"
+            android:layout_alignStart="@+id/ivBigHeroImage"
+            android:layout_alignRight="@+id/ivBigHeroImage"
+            android:layout_alignEnd="@+id/ivBigHeroImage"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp" />
     </RelativeLayout>
 
 </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>

@@ -12,19 +12,23 @@
         android:minHeight="?android:attr/actionBarSize"
         android:background="@color/primary"
         android:animateLayoutChanges="true"
+        app:layout_collapseMode="parallax"
+        app:layout_scrollFlags="scroll|enterAlways"
         app:title="Heroes of the Storm"
         app:titleTextAppearance="@style/ToolbarTitle"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <com.astuetz.PagerSlidingTabStrip
+    <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
+        android:background="@color/primary"
         android:layout_width="match_parent"
         android:layout_height="36dip"
         android:layout_below="@+id/toolbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        app:pstsDividerPadding="8dp"/>
+        app:layout_scrollFlags="scroll|enterAlways"/>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/materialViewPager"
         android:layout_width="match_parent"

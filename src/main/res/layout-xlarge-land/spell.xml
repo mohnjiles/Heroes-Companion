@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_marginLeft="64dp"
+    android:layout_marginStart="64dp"
+    android:layout_marginRight="64dp"
+    android:layout_marginEnd="64dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SINGULARITY SPIKE"
+        android:id="@+id/tvSpellName"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tvSpellName"
+        android:background="@color/divider_color"
+        android:id="@+id/view" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Flings a Singularity Spike that sticks to the first enemy hit. Deals 500 (120 + 20 per level) damage after 1 second and slows the enemy by 40% for 3 seconds."
+        android:fontFamily="sans-serif-light"
+        android:id="@+id/tvSpellText"
+        android:lineSpacingExtra="1.5dp"
+        android:textColor="#FFFFFF"
+        android:layout_alignTop="@+id/ivSpellImage"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/ivSpellImage"
+        android:layout_toEndOf="@+id/ivSpellImage"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="-4dp"
+        android:layout_marginBottom="16dp" />
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/ivSpellImage"
+        android:src="@drawable/singularityspike"
+        android:layout_below="@+id/view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[ TRAIT ]"
+        android:id="@+id/tvLetter"
+        android:textColor="#B3FFFFFF"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:layout_alignTop="@+id/tvSpellName"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Cooldown: 10 seconds"
+        android:fontFamily="sans-serif-light"
+        android:id="@+id/tvCooldown"
+        android:lineSpacingExtra="1.5dp"
+        android:textColor="#B3FFFFFF"
+        android:layout_below="@+id/tvSpellText"
+        android:layout_alignLeft="@+id/tvSpellText"
+        android:layout_alignStart="@+id/tvSpellText"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Cost: 10 Mana"
+        android:fontFamily="sans-serif-light"
+        android:id="@+id/tvCost"
+        android:lineSpacingExtra="1.5dp"
+        android:textColor="#B3FFFFFF"
+        android:layout_below="@+id/tvSpellText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/tvCooldown"
+        android:layout_toEndOf="@+id/tvCooldown"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp" />
+</RelativeLayout>

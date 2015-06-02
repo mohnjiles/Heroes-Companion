@@ -64,6 +64,10 @@ public class HeroDetailFragment extends Fragment  {
     TextView tvAttackDamagePerLevel;
     @InjectView(R.id.tv_attack_speed)
     TextView tvAttackSpeed;
+    @InjectView(R.id.tvSubTitle)
+    TextView tvHeroSubTitle;
+    @InjectView(R.id.ivBigHeroImage)
+    ImageView ivBigHeroImage;
     @InjectView(R.id.mrScrolls)
     ObservableScrollView mrScrolls;
 
@@ -116,11 +120,13 @@ public class HeroDetailFragment extends Fragment  {
         ivHeroImage.setBorderColor(Color.BLACK);
         ivHeroImage.mutateBackground(true);
         ivHeroImage.setImageResource(Utils.getResourceIdByName(getActivity(), hero.getName()));
-
+        ivBigHeroImage.setImageResource(Utils.getResourceIdByName(getActivity(),
+                Utils.formatSpellImageName(hero.getName() + "big")));
         ivRole.setImageResource(Utils.getResourceIdByName(getActivity(), hero.getRole()));
         ivFranchise.setImageResource(Utils.getResourceIdByName(getActivity(), hero.getFranchise() + "game"));
 
-        tvHeroTitle.setText(heroTitle.toUpperCase());
+        tvHeroTitle.setText(hero.getName());
+        tvHeroSubTitle.setText(hero.getTitle());
         tvRole.setText(hero.getRole());
         tvFranchise.setText(hero.getFranchise());
         tvType.setText(hero.getType());

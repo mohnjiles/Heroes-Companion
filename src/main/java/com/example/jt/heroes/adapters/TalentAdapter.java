@@ -1,6 +1,7 @@
 package com.example.jt.heroes.adapters;
 
 import android.content.Context;
+import android.support.design.widget.FloatingActionButton;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bignerdranch.android.multiselector.MultiSelector;
@@ -62,6 +64,9 @@ public class TalentAdapter extends ObservableRecyclerView.Adapter<TalentAdapter.
         private ImageView ivLvl13;
         private ImageView ivLvl16;
         private ImageView ivLvl20;
+        private TextView tvHelpText;
+        private FloatingActionButton fabSave;
+        private LinearLayout linearLayout;
         private Context context;
 
         public ViewHolder(View v, TalentFragment fragment, Context context) {
@@ -75,6 +80,9 @@ public class TalentAdapter extends ObservableRecyclerView.Adapter<TalentAdapter.
             ivLvl13 = fragment.getIvLvl13();
             ivLvl16 = fragment.getIvLvl16();
             ivLvl20 = fragment.getIvLvl20();
+            tvHelpText = fragment.getTvHelpText();
+            fabSave = fragment.getFabSave();
+            linearLayout = fragment.getLinearLayout();
             this.context = context;
 
             ButterKnife.inject(this, v);
@@ -87,42 +95,55 @@ public class TalentAdapter extends ObservableRecyclerView.Adapter<TalentAdapter.
         @Override
         public void onClick(View view) {
             if (talent != null) {
+
+                tvHelpText.setVisibility(View.INVISIBLE);
+                linearLayout.setVisibility(View.VISIBLE);
                 int talentTier = talent.getTalentTier();
                 switch (talentTier) {
                     case 1:
                         ivLvl1.setImageResource(Utils.getResourceIdByName(
                                 context,
                                 Utils.formatSpellImageName(talent.getName())));
+                        ivLvl1.setTag(talent);
                         break;
                     case 4:
                         ivLvl4.setImageResource(Utils.getResourceIdByName(
                                 context,
                                 Utils.formatSpellImageName(talent.getName())));
+                        ivLvl4.setTag(talent);
+
                         break;
                     case 7:
                         ivLvl7.setImageResource(Utils.getResourceIdByName(
                                 context,
                                 Utils.formatSpellImageName(talent.getName())));
+                        ivLvl7.setTag(talent);
+
                         break;
                     case 10:
                         ivLvl10.setImageResource(Utils.getResourceIdByName(
                                 context,
                                 Utils.formatSpellImageName(talent.getName())));
+                        ivLvl10.setTag(talent);
                         break;
                     case 13:
                         ivLvl13.setImageResource(Utils.getResourceIdByName(
                                 context,
                                 Utils.formatSpellImageName(talent.getName())));
+                        ivLvl13.setTag(talent);
                         break;
                     case 16:
                         ivLvl16.setImageResource(Utils.getResourceIdByName(
                                 context,
                                 Utils.formatSpellImageName(talent.getName())));
+                        ivLvl16.setTag(talent);
                         break;
                     case 20:
                         ivLvl20.setImageResource(Utils.getResourceIdByName(
                                 context,
                                 Utils.formatSpellImageName(talent.getName())));
+                        ivLvl20.setTag(talent);
+                        fabSave.animate().translationY(0).setDuration(300).start();
                         break;
                     default:
                         break;

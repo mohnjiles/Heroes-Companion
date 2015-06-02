@@ -2,13 +2,18 @@ package com.example.jt.heroes;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,12 +32,16 @@ public class MainActivity extends AppCompatActivity
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-    private NavigationDrawerFragment mNavigationDrawerFragment;
 
     private CharSequence mTitle;
+    private int mCurrentSelectedPosition = 0;
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
+    @InjectView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+    @InjectView(R.id.navigationView)
+    NavigationView navigationView;
 
 
     @Override
@@ -49,17 +58,63 @@ public class MainActivity extends AppCompatActivity
         }
 
         setSupportActionBar(toolbar);
-
-
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
-        // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+        setupNavDrawer();
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, HeroListFragment.newInstance(0))
+                .commit();
+
+        navigationView.setItemTextColor(getResources().getColorStateList(R.color.nav_drawer_text));
+        navigationView.setItemIconTintList(getResources().getColorStateList(R.color.nav_drawer_text));
+
+        if (savedInstanceState != null) {
+            mCurrentSelectedPosition =
+                    savedInstanceState.getInt("selected_position");
+        }
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                menuItem.setChecked(true);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                switch (menuItem.getItemId()) {
+                    case R.id.navigation_item_1:
+                        mCurrentSelectedPosition = 0;
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container, HeroListFragment.newInstance(0))
+                                .commit();
+                        return true;
+                    case R.id.navigation_item_2:
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container, NewsFragment.newInstance())
+                                .commit();
+                        mCurrentSelectedPosition = 1;
+                        return true;
+                    case R.id.navigation_item_3:
+                        mCurrentSelectedPosition = 2;
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container, SavedBuildsFragment.newInstance())
+                                .commit();
+                        return true;
+                    default:
+                        return true;
+                }
+            }
+        });
+    }
+
+    private void setupNavDrawer() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
     }
 
     protected Toolbar getToolbar() {
@@ -105,13 +160,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.main, menu);
-            return true;
-        }
+        getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -130,4 +179,34 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        outState.putInt("selected_position", mCurrentSelectedPosition);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mCurrentSelectedPosition = savedInstanceState.getInt("selected_position");
+        Menu menu = navigationView.getMenu();
+        menu.getItem(mCurrentSelectedPosition).setChecked(true);
+
+        switch (mCurrentSelectedPosition) {
+            case 0:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, HeroListFragment.newInstance(0))
+                        .commit();
+                break;
+            case 1:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, NewsFragment.newInstance())
+                        .commit();
+                break;
+            case 2:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, SavedBuildsFragment.newInstance())
+                        .commit();
+        }
+    }
 }

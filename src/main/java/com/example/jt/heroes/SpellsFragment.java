@@ -69,16 +69,7 @@ public class SpellsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         rvSpells.setHasFixedSize(true);
-        rvSpells.addItemDecoration(
-                new VerticalDividerItemDecoration.Builder(getActivity())
-                        .color(getResources().getColor(R.color.divider_color))
-                        .size(1)
-                        .build());
-        rvSpells.addItemDecoration(
-                new HorizontalDividerItemDecoration.Builder(getActivity())
-                        .color(getResources().getColor(android.R.color.transparent))
-                        .size(64)
-                        .build());
+        rvSpells.addItemDecoration(new SpacesItemDecoration(getActivity(), 8, 1));
 
         RecyclerView.LayoutManager mLayoutManager = null;
         if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {

@@ -46,11 +46,13 @@
         android:textColor="#B3FFFFFF"
         android:textSize="14sp"
         android:layout_below="@+id/tvNewsTitle"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="16dp" />
+        android:layout_marginRight="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp" />
 
     <TextView
         android:layout_width="wrap_content"

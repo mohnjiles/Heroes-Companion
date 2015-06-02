@@ -10,7 +10,10 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -96,16 +99,7 @@ public class HeroListFragment extends Fragment implements ObservableScrollViewCa
         toolbar.setSubtitle("Heroes");
 
         myRecyclerView.setHasFixedSize(true);
-        myRecyclerView.addItemDecoration(
-                new HorizontalDividerItemDecoration.Builder(getActivity())
-                        .color(getResources().getColor(R.color.super_dark_purple))
-                        .size(64)
-                        .build());
-        myRecyclerView.addItemDecoration(
-                new VerticalDividerItemDecoration.Builder(getActivity())
-                        .color(getResources().getColor(R.color.divider_color))
-                        .size(1)
-                        .build());
+        myRecyclerView.addItemDecoration(new SpacesItemDecoration(getActivity(), 64, 4));
 
         RecyclerView.LayoutManager mLayoutManager = null;
         if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -255,8 +249,20 @@ public class HeroListFragment extends Fragment implements ObservableScrollViewCa
                         public void onItemClick(View view, int position) {
 
                             Intent intent = new Intent(getActivity(), HeroActivity.class);
-                            intent.putExtra("hero", db.getHeroById((int)view.findViewById(R.id.textView).getTag()));
+                            intent.putExtra("hero", db.getHeroById((int) view.findViewById(R.id.textView).getTag()));
+
                             startActivity(intent);
+//                            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                                    getActivity(),
+//                                    new Pair<>(view.findViewById(R.id.textView),
+//                                            getString(R.string.transition_name_name)),
+//                                    new Pair<>(view.findViewById(R.id.tvTitle),
+//                                            getString(R.string.transition_name_title)),
+//                                    new Pair<>(view.findViewById(R.id.ivBigHeroImage),
+//                                            getString(R.string.transition_name_image))
+//
+//                            );
+//                            ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
 
                         }
                     })

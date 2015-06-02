@@ -1,33 +1,43 @@
 <com.github.ksoichiro.android.observablescrollview.ObservableScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mrScrolls"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:clipToPadding="false"
-    android:scrollbarStyle="outsideOverlay">
+    android:scrollbarStyle="outsideOverlay"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="404dp">
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:id="@+id/ivBigHeroImage"
+            android:src="@drawable/zeratulbig"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:cropToPadding="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:transitionName="@string/transition_name_image"/>
         <TextView
             android:id="@+id/tv_hero_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:text="ZERATUL, DARK PRELATE"
+            android:text="Zeratul"
             android:textColor="#FFFFFF"
-            android:textSize="18sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/tv_hero_title"
-            android:background="@color/divider_color"
-            android:id="@+id/view" />
+            android:textSize="24sp"
+            android:layout_above="@+id/tvSubTitle"
+            android:layout_alignLeft="@+id/tvSubTitle"
+            android:layout_alignStart="@+id/tvSubTitle"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            android:transitionName="@string/transition_name_name"/>
 
         <TextView
             android:id="@+id/tv_stats_title_1"
@@ -39,16 +49,20 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:layout_below="@+id/tv_lore"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="64dp" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/tv_stats_title_1"
             android:background="@color/divider_color"
-            android:id="@+id/view2" />
+            android:id="@+id/view2"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -58,7 +72,9 @@
             android:stretchColumns="*"
             android:layout_below="@+id/view2"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
 
             <TableRow
                 android:id="@+id/rowRole"
@@ -158,14 +174,17 @@
             android:gravity="center"
             android:text="STATS"
             android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_marginRight="16dp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/tvStatsTitle2"
             android:background="@color/divider_color"
-            android:id="@+id/view3" />
+            android:id="@+id/view3"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
 
         <TableLayout
             android:id="@+id/tableLayout2"
@@ -175,7 +194,9 @@
             android:stretchColumns="*"
             android:layout_below="@+id/view3"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
 
             <TableRow
                 android:id="@+id/rowTitles"
@@ -432,52 +453,92 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:id="@+id/iv_hero_image"
-            android:layout_below="@+id/view"
             app:riv_corner_radius="100dip"
             app:riv_border_width="4dip"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/zeratul" />
+            android:src="@drawable/zeratul"
+            android:layout_above="@+id/textView2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="-20dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_lore"
-            android:layout_alignTop="@+id/iv_hero_image"
-            android:layout_toRightOf="@+id/iv_hero_image"
-            android:layout_toEndOf="@+id/iv_hero_image"
-            android:layout_marginLeft="16dp"
             android:text="The enigmatic Dark Templar Zeratul faithfully serves the Xel'Naga. While he expertly wields the powers of the Void, it is his wisdom that earns him the respect of the Koprulu sector's greatest leaders - despite his penchant for dramatic entrances. "
             android:textColor="#FFFFFF"
             android:fontFamily="sans-serif-light"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:textIsSelectable="false"
-            android:layout_marginTop="-6dp"
-            android:lineSpacingExtra="3dp"/>
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:id="@+id/ivRole"
-            android:src="@drawable/warrior"
-            android:layout_below="@+id/iv_hero_image"
+            android:lineSpacingExtra="3dp"
+            android:layout_below="@+id/view4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp" />
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:id="@+id/ivRole"
+            android:src="@drawable/warrior"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp" />
 
         <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:id="@+id/ivFranchise"
             android:src="@drawable/diablogame"
-            android:layout_alignTop="@+id/ivRole"
-            android:layout_alignRight="@+id/iv_hero_image"
-            android:layout_alignEnd="@+id/iv_hero_image" />
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/ivRole"
+            android:layout_toEndOf="@+id/ivRole"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="LORE"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_below="@+id/ivBigHeroImage"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/textView2"
+            android:background="@color/divider_color"
+            android:id="@+id/view4"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
+
+        <TextView
+            android:id="@+id/tvSubTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="Dark Prelate"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_above="@+id/iv_hero_image"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:transitionName="@string/transition_name_title"/>
     </RelativeLayout>
 
 </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>

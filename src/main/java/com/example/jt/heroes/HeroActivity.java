@@ -3,6 +3,9 @@ package com.example.jt.heroes;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -46,7 +49,7 @@ public class HeroActivity extends AppCompatActivity {
     @InjectView(R.id.materialViewPager)
     ViewPager pager;
     @InjectView(R.id.tabs)
-    PagerSlidingTabStrip tabs;
+    TabLayout tabs;
     @InjectView(R.id.rlHeroActivity)
     RelativeLayout relativeLayout;
     @InjectView(R.id.toolbar)
@@ -79,12 +82,12 @@ public class HeroActivity extends AppCompatActivity {
         final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
                 .getDisplayMetrics());
         pager.setPageMargin(pageMargin);
-        tabs.setViewPager(pager);
-        tabs.setBackgroundColor(getResources().getColor(R.color.primary));
-        tabs.setTextColor(Color.WHITE);
-        tabs.setIndicatorColor(Color.WHITE);
-        tabs.setDividerColor(getResources().getColor(R.color.primary));
-        tabs.setIndicatorHeight(4);
+//        tabs.setViewPager(pager);
+//        tabs.setBackgroundColor(getResources().getColor(R.color.primary));
+//        tabs.setTextColor(Color.WHITE);
+//        tabs.setIndicatorColor(Color.WHITE);
+//        tabs.setDividerColor(getResources().getColor(R.color.primary));
+//        tabs.setIndicatorHeight(4);
 
         float actionBarHeight = 0;
         TypedValue tv = new TypedValue();
@@ -96,6 +99,7 @@ public class HeroActivity extends AppCompatActivity {
 
         lp.setMargins(0, Math.round(actionBarHeight), 0, 0);
         tabs.setLayoutParams(lp);
+        tabs.setupWithViewPager(pager);
 
         hero = (Hero) getIntent().getSerializableExtra("hero");
 
@@ -107,7 +111,6 @@ public class HeroActivity extends AppCompatActivity {
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setHomeButtonEnabled(true);
         }
-
 //        propagateToolbarState(toolbarIsShown());
 
 
@@ -121,7 +124,7 @@ public class HeroActivity extends AppCompatActivity {
         return toolbar;
     }
 
-    public PagerSlidingTabStrip getTabs() {
+    public TabLayout getTabs() {
         return tabs;
     }
 

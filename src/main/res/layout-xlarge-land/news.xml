@@ -6,7 +6,7 @@
 
     <ImageView
         android:layout_width="fill_parent"
-        android:layout_height="190dp"
+        android:layout_height="200dp"
         android:id="@+id/ivThumbnail"
         android:src="@drawable/newsicon"
         android:layout_alignParentTop="true"
@@ -14,7 +14,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:scaleType="fitXY" />
+        android:scaleType="centerCrop" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
         android:fontFamily="sans-serif-light"
         android:id="@+id/tvNewsTitle"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:paddingBottom="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
@@ -31,9 +31,11 @@
         android:layout_below="@+id/ivThumbnail"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,10 +47,13 @@
         android:textColor="#B3FFFFFF"
         android:textSize="14sp"
         android:layout_below="@+id/tvNewsTitle"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp" />
 
     <TextView
         android:layout_width="wrap_content"

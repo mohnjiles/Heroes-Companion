@@ -2,12 +2,14 @@ package com.example.jt.heroes;
 
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -85,12 +87,17 @@ public class NewsFragment extends Fragment implements ObservableScrollViewCallba
         toolbar.setSubtitle("News");
 
         rvNews.setHasFixedSize(true);
-        rvNews.addItemDecoration(
-                new HorizontalDividerItemDecoration.Builder(getActivity())
-                        .color(getResources().getColor(R.color.super_dark_purple))
-                        .size(64)
-                        .build());
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+
+        RecyclerView.LayoutManager mLayoutManager = null;
+        if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
+                == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+
+            mLayoutManager = new GridLayoutManager(getActivity(), 2);
+            rvNews.addItemDecoration(new SpacesItemDecoration(getActivity(), 64, 1));
+        } else {
+            mLayoutManager = new GridLayoutManager(getActivity(), 1);
+            rvNews.addItemDecoration(new SpacesItemDecoration(getActivity(), 64, 4));
+        }
         rvNews.setLayoutManager(mLayoutManager);
         new GetNews().execute();
     }

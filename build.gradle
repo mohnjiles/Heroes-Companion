@@ -36,5 +36,10 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.bignerdranch.android:recyclerview-multiselect:+'
+    compile 'com.android.support:design:22.2.0'
+    compile 'com.afollestad:material-dialogs:0.7.5.1'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.marshalchen.ultimaterecyclerview:library:0.3.4'
+
 
 }
