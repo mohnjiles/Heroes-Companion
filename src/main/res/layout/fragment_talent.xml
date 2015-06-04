@@ -55,7 +55,7 @@
             android:layout_weight="1">
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/ivLvl1"
+                android:id="@+id/ivTalentImage"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_centerHorizontal="true"
@@ -66,11 +66,11 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/ivLvl1"
-                android:layout_alignLeft="@+id/ivLvl1"
-                android:layout_alignRight="@+id/ivLvl1"
-                android:layout_alignStart="@+id/ivLvl1"
-                android:layout_below="@+id/ivLvl1"
+                android:layout_alignEnd="@+id/ivTalentImage"
+                android:layout_alignLeft="@+id/ivTalentImage"
+                android:layout_alignRight="@+id/ivTalentImage"
+                android:layout_alignStart="@+id/ivTalentImage"
+                android:layout_below="@+id/ivTalentImage"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
                 android:text="1"

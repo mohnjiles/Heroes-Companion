@@ -2,6 +2,7 @@ package com.example.jt.heroes;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -20,10 +22,17 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.jt.heroes.adapters.BuildAdapter;
+import com.example.jt.heroes.models.Talent;
+import com.example.jt.heroes.models.TalentBuild;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.marshalchen.ultimaterecyclerview.SwipeToDismissTouchListener;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +58,7 @@ public class SavedBuildsFragment extends Fragment {
 
     private SharedPreferences prefs;
     private List<String> prefKeys = new ArrayList<>();
+    private Map<String, String> prefsMap = new HashMap<>();
 
     public static SavedBuildsFragment newInstance() {
         SavedBuildsFragment fragment = new SavedBuildsFragment();
@@ -83,10 +93,13 @@ public class SavedBuildsFragment extends Fragment {
 
         Map<String, ?> allEntries = prefs.getAll();
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            prefKeys.add(entry.getKey());
+            if (entry.getValue() instanceof String) {
+                prefKeys.add(entry.getKey());
+                prefsMap.put(entry.getKey(), entry.getValue().toString());
+            }
         }
 
-        if (prefs.getAll().size() > 0) {
+        if (prefKeys.size() > 0) {
             rlNewTalent.setVisibility(View.INVISIBLE);
             rlMain.setVisibility(View.VISIBLE);
         } else {
@@ -147,6 +160,19 @@ public class SavedBuildsFragment extends Fragment {
 
             }
         });
+
+        HeroDatabase db = new HeroDatabase(getActivity());
+
+        rvBuilds.mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(getActivity(), BuildDetailActivity.class);
+                        intent.putExtra("talent_build", prefsMap.get(prefKeys.get(position)));
+                        intent.putExtra("build_name", prefKeys.get(position));
+                        startActivity(intent);
+                    }
+                }));
 
         fabClear.setOnClickListener(new View.OnClickListener() {
             @Override

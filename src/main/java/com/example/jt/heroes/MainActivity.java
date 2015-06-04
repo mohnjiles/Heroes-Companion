@@ -2,6 +2,7 @@ package com.example.jt.heroes;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
@@ -180,6 +181,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences prefs = getSharedPreferences("com.example.jt.heroes", Context.MODE_PRIVATE);
+        prefs.edit().putInt("mCurrentSelectedPosition", mCurrentSelectedPosition).apply();
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
         outState.putInt("selected_position", mCurrentSelectedPosition);
@@ -188,7 +196,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        mCurrentSelectedPosition = savedInstanceState.getInt("selected_position");
+        mCurrentSelectedPosition = getSharedPreferences("com.example.jt.heroes", Context.MODE_PRIVATE)
+                .getInt("mCurrentSelectedPosition", 0);
         Menu menu = navigationView.getMenu();
         menu.getItem(mCurrentSelectedPosition).setChecked(true);
 

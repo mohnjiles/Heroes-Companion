@@ -3,7 +3,9 @@ package com.example.jt.heroes;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.jt.heroes.models.Hero;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import butterknife.ButterKnife;
@@ -23,7 +27,7 @@ import butterknife.InjectView;
  * Use the {@link HeroDetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HeroDetailFragment extends Fragment  {
+public class HeroDetailFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     @InjectView(R.id.tv_hero_title)
@@ -142,7 +146,6 @@ public class HeroDetailFragment extends Fragment  {
         tvEnergyPerLevel.setText(String.valueOf(hero.getManaPerLevel()));
         tvEnergyRegenPerLevel.setText(String.valueOf(hero.getManaRegenPerLevel()));
         tvLore.setText(hero.getLore());
-
     }
 
 }

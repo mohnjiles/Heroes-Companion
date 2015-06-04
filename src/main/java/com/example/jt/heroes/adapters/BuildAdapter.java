@@ -3,34 +3,25 @@ package com.example.jt.heroes.adapters;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jt.heroes.HeroDatabase;
 import com.example.jt.heroes.R;
 import com.example.jt.heroes.Utils;
 import com.example.jt.heroes.models.Hero;
-import com.example.jt.heroes.models.News;
-import com.example.jt.heroes.models.Spell;
 import com.example.jt.heroes.models.Talent;
-import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import butterknife.ButterKnife;
@@ -46,6 +37,7 @@ public class BuildAdapter extends UltimateViewAdapter {
     private List<String> buildNames = new ArrayList<>();
     private List<String> buildTalentsAsJson = new ArrayList<>();
     private List<Talent> buildTalents = new ArrayList<>();
+    private         HeroDatabase db;
 
 
     // Provide a reference to the views for each data item
@@ -59,7 +51,7 @@ public class BuildAdapter extends UltimateViewAdapter {
         TextView tvHeroName;
         @InjectView(R.id.ivHeroImage)
         ImageView ivHeroImage;
-        @InjectView(R.id.ivLvl1)
+        @InjectView(R.id.ivTalentImage)
         RoundedImageView ivLvl1;
         @InjectView(R.id.ivLvl4)
         RoundedImageView ivLvl4;
@@ -90,9 +82,13 @@ public class BuildAdapter extends UltimateViewAdapter {
 
         Map<String, ?> allEntries = prefs.getAll();
         for (Map.Entry<String, ?> entry: allEntries.entrySet()) {
-            buildNames.add(entry.getKey());
-            buildTalentsAsJson.add(entry.getValue().toString());
+            if (entry.getValue() instanceof String) {
+                buildNames.add(entry.getKey());
+                buildTalentsAsJson.add(entry.getValue().toString());
+            }
         }
+
+        db = new HeroDatabase(context);
     }
 
     // Create new views (invoked by the layout manager)
@@ -119,7 +115,7 @@ public class BuildAdapter extends UltimateViewAdapter {
         String json = buildTalentsAsJson.get(position);
         buildTalents = gson.fromJson(json, listType);
 
-        HeroDatabase db = new HeroDatabase(context);
+
         Talent someTalent = buildTalents.get(0);
         Hero currentHero = db.getHeroById(someTalent.getHeroId());
 
@@ -155,12 +151,12 @@ public class BuildAdapter extends UltimateViewAdapter {
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return prefs.getAll().size();
+        return buildTalentsAsJson.size();
     }
 
     @Override
     public int getAdapterItemCount() {
-        return prefs.getAll().size();
+        return buildTalentsAsJson.size();
     }
 
     @Override

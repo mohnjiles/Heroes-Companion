@@ -19,5 +19,6 @@
     <string name="title_activity_hero">HeroActivity</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_build_detail">BuildDetailActivity</string>
 
 </resources>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/ivBigHeroImage"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/zeratulbig"
+        app:riv_border_color="#000000"
+        app:riv_border_width="0dp"
+        app:riv_corner_radius="0dp"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:id="@+id/tvBuildName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:text="Zeratul OP"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/white"
+        android:layout_above="@+id/ivHeroImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvHeroName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:text="Zeratul"
+        android:textColor="@color/secondary_text"
+        android:textSize="16sp"
+        android:layout_below="@+id/tvBuildName"
+        android:layout_alignLeft="@+id/tvBuildName"
+        android:layout_alignStart="@+id/tvBuildName" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/ivHeroImage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/zeratul"
+        app:riv_border_color="#000000"
+        app:riv_border_width="4dp"
+        app:riv_corner_radius="100dp"
+        android:layout_alignBottom="@+id/ivBigHeroImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-16dp" />
+
+</RelativeLayout>

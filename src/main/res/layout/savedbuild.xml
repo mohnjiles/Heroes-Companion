@@ -52,7 +52,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/ivLvl1"
+            android:id="@+id/ivTalentImage"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_margin="16dp"

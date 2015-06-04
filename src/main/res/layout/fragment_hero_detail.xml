@@ -471,7 +471,7 @@
             android:textColor="#FFFFFF"
             android:fontFamily="sans-serif-light"
             android:textIsSelectable="false"
-            android:lineSpacingExtra="3dp"
+            android:lineSpacingExtra="2dp"
             android:layout_below="@+id/view4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
