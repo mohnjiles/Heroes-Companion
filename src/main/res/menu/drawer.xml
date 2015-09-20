@@ -5,14 +5,14 @@
             android:id="@+id/navigation_item_1"
             android:checked="true"
             android:icon="@drawable/ic_menu_white_24dp"
-            android:title="Heroes"/>
+            android:title="Heroes" />
         <item
             android:id="@+id/navigation_item_2"
-            android:icon="@drawable/newspaper"
-            android:title="News"/>
+            android:icon="@drawable/ic_newspaper_white_24dp"
+            android:title="News" />
         <item
             android:id="@+id/navigation_item_3"
             android:icon="@drawable/ic_build_white_24dp"
-            android:title="Talent Builds"/>
+            android:title="Talent Builds" />
     </group>
 </menu>

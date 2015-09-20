@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.jt.heroes" >
+    package="net.cloudapp.callme.hots2" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -11,11 +11,13 @@
         android:icon="@drawable/appicon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        tools:replace="android:icon" >
+        android:name=".Global"
+        tools:replace="android:icon,android:theme" >
         <activity
-            android:name=".MainActivity"
+            android:name="net.cloudapp.callme.hots2.MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTop" >
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,20 +25,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HeroActivity"
+            android:name="net.cloudapp.callme.hots2.HeroActivity"
             android:label="@string/title_activity_hero"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="net.cloudapp.callme.hots2.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jt.heroes.MainActivity" />
+                android:value="net.cloudapp.callme.hots2.MainActivity" />
         </activity>
         <activity
-            android:name=".BuildDetailActivity"
+            android:name="net.cloudapp.callme.hots2.BuildDetailActivity"
             android:label="@string/title_activity_build_detail"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="net.cloudapp.callme.hots2.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jt.heroes.MainActivity" />
+                android:value="net.cloudapp.callme.hots2.MainActivity" />
         </activity>
     </application>
 

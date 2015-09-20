@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/sorta_dark_purple"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp">
 
     <ImageView
         android:layout_width="fill_parent"
@@ -65,6 +66,5 @@
         android:layout_below="@+id/tvDescription"
         android:layout_alignLeft="@+id/tvDescription"
         android:layout_alignStart="@+id/tvDescription"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginTop="16dp" />
 </RelativeLayout>

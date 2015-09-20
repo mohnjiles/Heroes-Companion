@@ -4,7 +4,8 @@
     android:id="@+id/recycler_view_container"
     android:clickable="true"
     android:focusable="true"
-    android:background="@color/sorta_dark_purple">
+    android:background="@color/sorta_dark_purple"
+    android:paddingBottom="24dp">
 
 
     <ImageView
@@ -79,8 +80,7 @@
         android:lineSpacingExtra="2dp"
         android:layout_marginTop="24dp"
         android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginLeft="16dp" />
 
     <ImageView
         android:layout_width="48dp"
@@ -115,5 +115,17 @@
         android:layout_below="@+id/tvTitle"
         android:layout_alignLeft="@+id/tvTitle"
         android:layout_alignStart="@+id/tvTitle" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivFree"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/freebanner"
+        android:layout_marginRight="-16dp"
+        android:layout_marginTop="-16dp"
+        android:visibility="invisible" />
 
 </RelativeLayout>

@@ -8,14 +8,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Heroes of the Storm"
+        android:text="@string/app_name"
         android:id="@+id/tvDrawerTitle"
         android:layout_alignBottom="@+id/imageView"
         android:layout_toRightOf="@+id/imageView"
         android:layout_toEndOf="@+id/imageView"
         android:layout_alignTop="@+id/imageView"
         android:gravity="center_vertical"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="20sp" />
 
     <ImageView
         android:layout_width="64dp"

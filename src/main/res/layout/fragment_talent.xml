@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/purple_gradient_bg"
-    tools:context="com.example.jt.heroes.TalentFragment">
+    tools:context="net.cloudapp.callme.hots2.TalentFragment">
 
     <com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
         android:id="@+id/rvTalents"
@@ -38,7 +38,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp" />
+        android:layout_marginRight="16dp"
+        app:borderWidth="0dp"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -60,8 +61,8 @@
                 android:layout_height="36dp"
                 android:layout_centerHorizontal="true"
                 app:riv_border_color="#000000"
-                app:riv_border_width="1dp"
-                app:riv_corner_radius="0dp" />
+                app:riv_border_width="2dp"
+                app:riv_corner_radius="100dp" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -92,8 +93,8 @@
                 android:layout_height="36dp"
                 android:layout_centerHorizontal="true"
                 app:riv_border_color="#000000"
-                app:riv_border_width="1dp"
-                app:riv_corner_radius="0dp" />
+                app:riv_border_width="2dp"
+                app:riv_corner_radius="100dp" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -123,8 +124,8 @@
                 android:layout_height="36dp"
                 android:layout_centerHorizontal="true"
                 app:riv_border_color="#000000"
-                app:riv_border_width="1dp"
-                app:riv_corner_radius="0dp" />
+                app:riv_border_width="2dp"
+                app:riv_corner_radius="100dp" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -154,8 +155,8 @@
                 android:layout_height="36dp"
                 android:layout_centerHorizontal="true"
                 app:riv_border_color="#000000"
-                app:riv_border_width="1dp"
-                app:riv_corner_radius="0dp" />
+                app:riv_border_width="2dp"
+                app:riv_corner_radius="100dp" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -185,8 +186,8 @@
                 android:layout_height="36dp"
                 android:layout_centerHorizontal="true"
                 app:riv_border_color="#000000"
-                app:riv_border_width="1dp"
-                app:riv_corner_radius="0dp" />
+                app:riv_border_width="2dp"
+                app:riv_corner_radius="100dp" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -216,8 +217,8 @@
                 android:layout_height="36dp"
                 android:layout_centerHorizontal="true"
                 app:riv_border_color="#000000"
-                app:riv_border_width="1dp"
-                app:riv_corner_radius="0dp" />
+                app:riv_border_width="2dp"
+                app:riv_corner_radius="100dp" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -245,8 +246,8 @@
                 android:layout_height="36dp"
                 android:layout_centerHorizontal="true"
                 app:riv_border_color="#000000"
-                app:riv_border_width="1dp"
-                app:riv_corner_radius="0dp" />
+                app:riv_border_width="2dp"
+                app:riv_corner_radius="100dp" />
 
             <TextView
                 android:layout_width="fill_parent"
