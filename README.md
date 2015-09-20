@@ -1,6 +1,12 @@
 # Heroes-Companion
 Companion application for Heroes of the Storm
 
+### Features
+* Search and sort to find your favorite hero!
+* See the free hero rotation for the current week
+* Edit and save customized talent builds to view while in-game
+* Read up on all the latest news
+
 ### Credits
 Many thanks to the devs of the following (awesome) libraries:
 
