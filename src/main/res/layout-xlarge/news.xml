@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/sorta_dark_purple"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:id="@+id/ivThumbnail"
+        android:src="@drawable/newsicon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NEW HEROES, SKINS, AND MOUNTS COMING SOON"
+        android:fontFamily="sans-serif-light"
+        android:id="@+id/tvNewsTitle"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
+        android:layout_below="@+id/ivThumbnail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="We have many colorful new skins and mounts in development, and today we're offering you a sneak peek at Kael’thas, Master Kael'thas, StormPunk Kael’thas, Johanna, Master Johanna, Centurion Johanna, Bikini Stitches, the Golden Tiger Mount, the Hearthstone Card Mount, the Illidan’s Nightmare Mount, the Billie the Kid Mount, as well as Super Sonya and Mad Martian Gazlowe and some of their themed abilities and tints!"
+        android:fontFamily="sans-serif-light"
+        android:id="@+id/tvDescription"
+        android:lineSpacingExtra="3dp"
+        android:textColor="#B3FFFFFF"
+        android:textSize="14sp"
+        android:layout_below="@+id/tvNewsTitle"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 DAYS AGO"
+        android:fontFamily="sans-serif-light"
+        android:id="@+id/tvPublishDate"
+        android:textColor="@color/secondary_text"
+        android:textSize="14dp"
+        android:layout_below="@+id/tvDescription"
+        android:layout_alignLeft="@+id/tvDescription"
+        android:layout_alignStart="@+id/tvDescription"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
+</RelativeLayout>

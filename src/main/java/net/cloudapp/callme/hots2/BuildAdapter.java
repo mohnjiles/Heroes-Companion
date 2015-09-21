@@ -119,15 +119,22 @@ public class BuildAdapter extends UltimateViewAdapter {
 
         holder2.tvBuildName.setText(buildNames.get(position));
         holder2.tvHeroName.setText(currentHero.getName());
-        holder2.ivHeroImage.setImageResource(Utils.getResourceIdByName(context,
-                Utils.formatSpellImageName(currentHero.getName())));
+
+        int resId = Utils.getResourceIdByName(context,
+                Utils.formatSpellImageName(currentHero.getName()));
+        String url = Constants.IMAGE_BASE_URL + "HeroImages/"
+                + Utils.formatSpellImageName(currentHero.getName()) + ".png";
+        Utils.GlideLoadImage(context, resId, url, holder2.ivHeroImage);
 
 
         for (int i = 0; i < buildTalents.size(); i++) {
             Talent currentTalent = buildTalents.get(i);
 
-            imageViews[i].setImageResource(Utils.getResourceIdByName(context,
-                    Utils.formatSpellImageName(currentTalent.getName())));
+            int imgResId = Utils.getResourceIdByName(context,
+                    Utils.formatSpellImageName(currentTalent.getName()));
+            String imgUrl = Constants.IMAGE_BASE_URL + currentHero.getName() + "/"
+                    + Utils.formatSpellImageName(currentTalent.getName()) + ".png";
+            Utils.GlideLoadImage(context, imgResId, imgUrl, imageViews[i]);
         }
     }
 

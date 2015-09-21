@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.bignerdranch.android.multiselector.MultiSelector;
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 
+import net.cloudapp.callme.hots2.Constants;
 import net.cloudapp.callme.hots2.R;
 import net.cloudapp.callme.hots2.TalentFragment;
 import net.cloudapp.callme.hots2.Utils;
@@ -286,7 +287,11 @@ public class TalentAdapter extends ObservableRecyclerView.Adapter<TalentAdapter.
         holder.tvTalentName.setText(talent.getName().toUpperCase(Locale.getDefault()));
         holder.tvTalentName.setTag(talent);
         holder.tvTalentDescription.setText(talent.getDescription());
-        holder.ivTalentIcon.setImageResource(Utils.getResourceIdByName(context, Utils.formatSpellImageName(talent.getName())));
+
+        int resId = Utils.getResourceIdByName(context, Utils.formatSpellImageName(talent.getName()));
+        String imageName = Utils.formatSpellImageName(talent.getName()) + ".png";
+        String imageUrl = Constants.IMAGE_BASE_URL + hero.getName() + "/" + imageName;
+        Utils.GlideLoadImage(context, resId, imageUrl, holder.ivTalentIcon);
 
         handleSelectedItemDisplay(holder, position);
     }

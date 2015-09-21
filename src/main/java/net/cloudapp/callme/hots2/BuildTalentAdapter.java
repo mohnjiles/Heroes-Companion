@@ -100,9 +100,13 @@ public class BuildTalentAdapter extends ObservableRecyclerView.Adapter<RecyclerV
             ((ItemViewHolder) holder).tvTalentDescription.setText(talent.getDescription());
             ((ItemViewHolder) holder).tvTalentLevel.setText("LEVEL " + talent.getTier());
             ((ItemViewHolder) holder).tvTalentName.setText(talent.getName());
-            ((ItemViewHolder) holder).ivTalentImage.setImageResource(Utils.getResourceIdByName(
-                    context, Utils.formatSpellImageName(talent.getName())
-            ));
+
+            int talentResId = Utils.getResourceIdByName(
+                    context, Utils.formatSpellImageName(talent.getName()));
+            String talentUrl = Constants.IMAGE_BASE_URL + heroName + "/" + Utils.formatSpellImageName(talent.getName());
+            Utils.GlideLoadImage(context, talentResId, talentUrl, ((ItemViewHolder)holder).ivTalentImage);
+
+            //((ItemViewHolder) holder).ivTalentImage.setImageResource()
         } else if (holder instanceof HeaderViewHolder) {
             ((HeaderViewHolder) holder).tvBuildName.setText(buildName);
             ((HeaderViewHolder) holder).tvHeroName.setText(heroName);

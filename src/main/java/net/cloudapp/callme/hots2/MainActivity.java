@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
                     case R.id.navigation_item_3:
                         mCurrentSelectedPosition = 2;
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container, ScrapeFragment.newInstance(), "saved_builds_fragment")
+                                .replace(R.id.container, SavedBuildsFragment.newInstance(), "saved_builds_fragment")
                                 .commit();
                         return true;
                     default:
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case 2:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, ScrapingFragment.newInstance())
+                        .replace(R.id.container, SavedBuildsFragment.newInstance())
                         .commit();
                 break;
         }

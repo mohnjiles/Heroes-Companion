@@ -9,8 +9,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
-import com.squareup.picasso.Picasso;
 
 import net.cloudapp.callme.hots2.News;
 import net.cloudapp.callme.hots2.R;
@@ -76,7 +76,7 @@ public class NewsAdapter extends ObservableRecyclerView.Adapter<NewsAdapter.View
         holder.tvNewsDescription.setText(news.getDescription());
         holder.tvPublishDate.setText(news.getPublishDate().toUpperCase(Locale.getDefault()));
         String url = "http:" + news.getImage();
-        Picasso.with(context).load(url).into(holder.ivNewsIcon);
+        Glide.with(context).load(url).into(holder.ivNewsIcon);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

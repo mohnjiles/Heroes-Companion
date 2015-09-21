@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -121,9 +120,18 @@ public class HeroDetailFragment extends Fragment {
 
         ivHeroImage.setBorderColor(Color.BLACK);
         ivHeroImage.mutateBackground(true);
-        ivHeroImage.setImageResource(Utils.getResourceIdByName(getActivity(), hero.getName()));
-        ivBigHeroImage.setImageResource(Utils.getResourceIdByName(getActivity(),
-                Utils.formatSpellImageName(hero.getName() + "big")));
+
+        int resId = Utils.getResourceIdByName(getActivity(), hero.getName());
+        String imageUrl = Constants.IMAGE_BASE_URL + "HeroImages/"
+                + Utils.formatSpellImageName(hero.getName()) + ".png";
+        Utils.GlideLoadImage(this, resId, imageUrl, ivHeroImage);
+
+        int bigResId = Utils.getResourceIdByName(getActivity(), hero.getName() + "big");
+        String bigImageUrl = Constants.IMAGE_BASE_URL + "webm/"
+                + Utils.formatSpellImageName(hero.getName()) + "big.compressed.png";
+        Utils.GlideLoadImage(this, bigResId, bigImageUrl, ivBigHeroImage);
+
+
         ivRole.setImageResource(Utils.getResourceIdByName(getActivity(), hero.getRole()));
         ivFranchise.setImageResource(Utils.getResourceIdByName(getActivity(), hero.getFranchise() + "game"));
 

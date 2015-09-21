@@ -37,7 +37,6 @@ dependencies {
     compile 'com.github.ksoichiro:android-observablescrollview:1.5.1'
     compile 'com.github.traex.rippleeffect:library:1.2.4'
     compile 'com.github.leonardoxh:fake-search-view:0.3.1'
-    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.bignerdranch.android:recyclerview-multiselect:+'
     compile 'com.android.support:design:22.2.0'
@@ -46,6 +45,7 @@ dependencies {
     compile "frankiesardo:icepick:3.0.2"
     provided "frankiesardo:icepick-processor:3.0.2"
     compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.github.bumptech.glide:glide:3.5.2'
 
 
 }

@@ -2,7 +2,6 @@ package net.cloudapp.callme.hots2.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +15,8 @@ import android.widget.TextView;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 
+import net.cloudapp.callme.hots2.Constants;
 import net.cloudapp.callme.hots2.R;
 import net.cloudapp.callme.hots2.Utils;
 import net.cloudapp.callme.hots2.models.Hero;
@@ -41,7 +38,6 @@ public class MyAdapter extends ObservableRecyclerView.Adapter<MyAdapter.ViewHold
     private ArrayList<Hero> originalList;
     private int lastPosition = -1;
     private Context context;
-    private static final String imageBaseUrl = "http://jtmiles.xyz/hots/img/";
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -132,7 +128,10 @@ public class MyAdapter extends ObservableRecyclerView.Adapter<MyAdapter.ViewHold
         holder.tvRole.setText(heroList.get(position).getRole());
 
         // set icons
-        holder.ivHeroIcon.setImageResource(heroList.get(position).getIconResourceId());
+        int resId = heroList.get(position).getIconResourceId();
+        String imageUrl = Constants.IMAGE_BASE_URL + "HeroImages/"
+                + Utils.formatSpellImageName(heroList.get(position).getName()) + ".png";
+        Utils.GlideLoadImage(context, resId, imageUrl, holder.ivHeroIcon);
 
         switch (heroList.get(position).getRole()) {
             case "Assassin":
@@ -165,46 +164,12 @@ public class MyAdapter extends ObservableRecyclerView.Adapter<MyAdapter.ViewHold
 
         }
 
-        final String imageUrl = imageBaseUrl + heroList.get(position).getName() + "/"
-                + Utils.formatSpellImageName(heroList.get(position).getName());
-        final ViewHolder finalViewHolder = holder;
+        final String bigImageUrl = Constants.IMAGE_BASE_URL + "webm/" +
+                Utils.formatSpellImageName(heroList.get(position).getName()) + "big.compressed.png";
 
-        int resId = Utils.getResourceIdByName(context,
+        int bigResId = Utils.getResourceIdByName(context,
                 Utils.formatSpellImageName(heroList.get(position).getName() + "big"));
-        if (resId != 0) {
-            Picasso.with(context)
-                    .load(resId)
-                    .into(finalViewHolder.ivBigHeroImage);
-        } else {
-            Picasso
-                    .with(context)
-                    .load(imageUrl)
-                    .networkPolicy(NetworkPolicy.OFFLINE)
-                    .into(holder.ivBigHeroImage, new Callback() {
-                        @Override
-                        public void onSuccess() {
-
-                        }
-
-                        @Override
-                        public void onError() {
-                            //Try again online if cache failed
-                            Picasso.with(context)
-                                    .load(imageUrl)
-                                    .into(finalViewHolder.ivBigHeroImage, new Callback() {
-                                        @Override
-                                        public void onSuccess() {
-
-                                        }
-
-                                        @Override
-                                        public void onError() {
-                                            Log.v("Picasso", "Fail downloading image");
-                                        }
-                                    });
-                        }
-                    });
-        }
+        Utils.GlideLoadImage(context, bigResId, bigImageUrl, holder.ivBigHeroImage);
 
         if ((freeHeroes != null && freeHeroes.size() > 0) && freeHeroes.contains(heroList.get(position))) {
             holder.ivFree.setVisibility(View.VISIBLE);

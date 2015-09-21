@@ -4,12 +4,17 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.support.v4.app.Fragment;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -147,4 +152,33 @@ public class Utils {
         }
     }
 
+    public static void GlideLoadImage(final Fragment context, int resId, final String imageUrl, final ImageView imageView) {
+
+        if (resId != 0) {
+            Glide.with(context)
+                    .load(resId)
+                    .into(imageView);
+        } else {
+            Glide
+                    .with(context)
+                    .load(imageUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imageView);
+        }
+    }
+    public static void GlideLoadImage(final Context context, int resId, final String imageUrl, final ImageView imageView) {
+
+        if (resId != 0) {
+            Glide.with(context)
+                    .load(resId)
+                    .into(imageView);
+        } else {
+            Glide
+                    .with(context)
+                    .load(imageUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imageView);
+        }
+    }
 }
+

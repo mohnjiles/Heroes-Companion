@@ -10,8 +10,11 @@ import android.widget.TextView;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 
+import net.cloudapp.callme.hots2.Constants;
+import net.cloudapp.callme.hots2.HeroDatabase;
 import net.cloudapp.callme.hots2.R;
 import net.cloudapp.callme.hots2.Utils;
+import net.cloudapp.callme.hots2.models.Hero;
 import net.cloudapp.callme.hots2.models.Spell;
 
 import java.util.List;
@@ -79,7 +82,15 @@ public class SpellsAdapter extends ObservableRecyclerView.Adapter<SpellsAdapter.
         holder.tvSpellName.setText(spell.getName().toUpperCase(Locale.getDefault()));
         holder.tvSpellText.setText(spell.getDescription());
         holder.tvLetter.setText("[ " + spell.getHotkey().toUpperCase(Locale.getDefault()) + " ]");
-        holder.ivSpellImage.setImageResource(Utils.getResourceIdByName(context, Utils.formatSpellImageName(spell.getName())));
+
+        String spellNameFormatted = Utils.formatSpellImageName(spell.getName());
+        Hero hero = HeroDatabase.getInstance(context).getHeroById(spell.getHeroId());
+
+        final String imageUrl = Constants.IMAGE_BASE_URL + hero.getName() + "/"
+                + spellNameFormatted + ".png";
+
+        int resId = Utils.getResourceIdByName(context, spellNameFormatted);
+        Utils.GlideLoadImage(context, resId, imageUrl, holder.ivSpellImage);
 
         if (spell.getCooldown() == 0) {
             holder.tvCooldown.setVisibility(View.GONE);
