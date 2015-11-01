@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.cloudapp.callme.hots2.SavedBuildsFragment">
+    tools:context="net.cloudapp.callme.hots3.SavedBuildsFragment">
 
     <RelativeLayout
         android:id="@+id/rlMain"
@@ -18,6 +18,16 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:scrollbarStyle="outsideOverlay" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabNewBuildOther"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            app:borderWidth="0dp"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -48,16 +58,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="To start, head over to your favorite hero&apos;s talent page!"
+            android:text="To start, click the + button and pick a hero!"
             android:id="@+id/textView4"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:fontFamily="sans-serif-light"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="32dp"
             android:layout_marginLeft="16dp"
+            android:gravity="center"
+            android:layout_toLeftOf="@+id/fabNewBuild"
+            android:layout_toStartOf="@+id/fabNewBuild"
+            android:layout_alignBottom="@+id/fabNewBuild"
+            android:layout_alignTop="@+id/fabNewBuild"
+            android:layout_marginRight="16dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabNewBuild"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
             android:layout_marginRight="16dp"
-            android:gravity="center" />
+            app:borderWidth="0dp"/>
+
     </RelativeLayout>
 </RelativeLayout>

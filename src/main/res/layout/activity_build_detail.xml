@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.cloudapp.callme.hots2.BuildDetailActivity"
+    tools:context="net.cloudapp.callme.hots3.BuildDetailActivity"
     android:fitsSystemWindows="true">
 
             <android.support.v7.widget.Toolbar
